@@ -29,10 +29,9 @@ header{
   display:flex;
   align-items:center;
   position:relative;
-  z-index:2000; /* por encima del hero */
+  z-index:2000;
 }
 
-/* LOGO */
 .logo{
   flex:0 0 auto;
 }
@@ -40,18 +39,17 @@ header{
   height:70px;
 }
 
-/* CENTRO */
 .header-center{
   flex:1;
   display:flex;
   justify-content:center;
 }
 
-/* BUSCADOR */
 .search-container{
   width:100%;
   max-width:450px;
 }
+
 .search-container input{
   width:100%;
   padding:10px 18px;
@@ -61,12 +59,12 @@ header{
   font-size:14px;
   transition:.3s;
 }
+
 .search-container input:focus{
   border-color:var(--color-primario);
   box-shadow:0 0 8px rgba(198,156,109,.3);
 }
 
-/* BOTÓN HAMBURGUESA */
 .menu-toggle{
   flex:0 0 auto;
   font-size:28px;
@@ -86,16 +84,17 @@ nav{
   width:220px;
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
   z-index:2200;
-
   max-height:0;
   padding:0;
   overflow:hidden;
   transition:max-height .3s ease, padding .3s ease;
 }
+
 nav.active{
   max-height:600px;
   padding:20px;
 }
+
 nav a{
   margin:10px 0;
   text-decoration:none;
@@ -104,7 +103,7 @@ nav a{
   cursor:pointer;
 }
 
-/* SUBMENÚ */
+/* Submenú */
 .submenu{
   display:flex;
   flex-direction:column;
@@ -112,20 +111,33 @@ nav a{
   margin-top:5px;
   margin-bottom:5px;
   overflow:hidden;
-
   max-height:0;
   opacity:0;
   transition:max-height .3s ease, opacity .2s ease;
 }
+
 .submenu.active{
   max-height:240px;
   opacity:1;
 }
+
 .submenu a{
   font-weight:normal;
   color:#444;
   margin:5px 0;
   font-size:14px;
+}
+
+/* WhatsApp ícono */
+.whatsapp-link{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.whatsapp-icon{
+  width:18px;
+  height:18px;
 }
 
 /* ================= HERO ================= */
@@ -140,24 +152,26 @@ nav a{
   color:white;
   overflow:hidden;
 }
+
 .hero::before{
   content:"";
   position:absolute;
   inset:0;
   background:rgba(0,0,0,0.55);
 }
+
 .hero h2,
 .hero p,
 .hero .btn{
   position:relative;
   z-index:2;
 }
+
 .hero h2{
   font-size:48px;
   margin-bottom:15px;
 }
 
-/* BOTÓN PRINCIPAL */
 .btn{
   display:inline-block;
   margin-top:20px;
@@ -173,16 +187,18 @@ nav a{
   background:var(--color-hover);
 }
 
-/* ================= QUIÉNES SOMOS (CON IMAGEN) ================= */
+/* ================= QUIÉNES ================= */
 .quienes{
   background:white;
   padding:100px 40px;
 }
+
 .quienes h2{
   text-align:center;
   margin-bottom:60px;
   font-size:32px;
 }
+
 .quienes-wrapper{
   display:flex;
   align-items:center;
@@ -190,18 +206,22 @@ nav a{
   max-width:1100px;
   margin:0 auto;
 }
+
 .quienes-texto{
   flex:1;
   line-height:1.9;
   font-size:17px;
   color:#444;
 }
+
 .quienes-texto p{
   margin-bottom:20px;
 }
+
 .quienes-imagen{
   flex:1;
 }
+
 .quienes-imagen img{
   width:100%;
   border-radius:12px;
@@ -213,12 +233,14 @@ nav a{
   padding:80px 20px;
   text-align:center;
 }
+
 .grid{
   display:flex;
   justify-content:center;
   gap:40px;
   flex-wrap:wrap;
 }
+
 .card{
   background:white;
   width:320px;
@@ -227,15 +249,19 @@ nav a{
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
   transition:.3s;
 }
+
 .card:hover{
   transform:translateY(-5px);
 }
+
 .card img{
   width:100%;
 }
+
 .card-content{
   padding:20px;
 }
+
 .whatsapp{
   display:inline-block;
   margin-top:15px;
@@ -247,6 +273,7 @@ nav a{
   font-weight:bold;
   transition:.3s;
 }
+
 .whatsapp:hover{
   background:var(--color-whatsapp-hover);
 }
@@ -259,6 +286,7 @@ footer{
   padding:30px;
   margin-top:60px;
 }
+
 footer a{
   color:white;
   text-decoration:none;
@@ -276,7 +304,7 @@ footer a{
     padding:15px 20px;
   }
   .header-center{
-    display:none; /* ocultar buscador en móvil */
+    display:none;
   }
   .hero{
     padding:100px 15px;
@@ -284,14 +312,8 @@ footer a{
   .hero h2{
     font-size:34px;
   }
-  .grid{
-    gap:20px;
-  }
   .card{
     width:90%;
-  }
-  .quienes{
-    padding:70px 20px;
   }
 }
 </style>
@@ -316,7 +338,7 @@ footer a{
        tabindex="0"
        aria-expanded="false">☰</div>
 
-  <nav id="menu" aria-label="Menú principal">
+  <nav id="menu">
     <a href="#productos">Productos</a>
     <a href="#quienes">Quiénes somos</a>
 
@@ -325,7 +347,14 @@ footer a{
     <div id="contacto-submenu" class="submenu">
       <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
       <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
-      <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 WhatsApp: 11-6682-3619</a>
+
+      <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+             alt="WhatsApp"
+             class="whatsapp-icon">
+        WhatsApp: 11-6682-3619
+      </a>
+
       <a href="javascript:void(0)">Código Postal: 1661</a>
     </div>
   </nav>
@@ -339,65 +368,25 @@ footer a{
 
 <section id="quienes" class="quienes">
   <h2>Quiénes Somos</h2>
-
   <div class="quienes-wrapper">
-
     <div class="quienes-texto">
       <p>
         En <strong>CP Carpintería</strong> trabajamos la madera con dedicación,
-        compromiso y respeto por el oficio. Somos un emprendimiento especializado
-        en la fabricación de muebles en pino macizo, donde cada pieza es creada
-        con atención al detalle y enfoque en la durabilidad.
+        compromiso y respeto por el oficio.
       </p>
-
       <p>
-        Nuestro proceso combina técnicas artesanales con herramientas modernas,
-        asegurando estructuras firmes, terminaciones cuidadas y diseños funcionales.
-        Desde la selección de la madera hasta el acabado final,
-        cada etapa es realizada con precisión.
-      </p>
-
-      <p>
-        Creemos que un buen mueble no solo cumple una función,
-        sino que aporta calidez, personalidad y confianza a cada hogar.
-        Por eso, nuestro objetivo es simple: fabricar muebles sólidos,
-        prácticos y hechos para acompañar muchos años.
+        Fabricamos muebles sólidos, funcionales y pensados para durar muchos años.
       </p>
     </div>
-
     <div class="quienes-imagen">
       <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
-           alt="Taller de carpintería trabajando la madera">
-    </div>
-
-  </div>
-</section>
-
-<section id="productos" class="productos">
-  <h2>Nuestros Productos</h2>
-
-  <div class="grid">
-    <div class="card">
-      <img src="https://via.placeholder.com/400x300" alt="Mesa plegable 70x70">
-      <div class="card-content">
-        <h3>Mesa Plegable 70x70</h3>
-        <p>Pino macizo reforzada</p>
-        <a class="whatsapp"
-           href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70"
-           target="_blank" rel="noopener noreferrer">
-          Consultar por WhatsApp
-        </a>
-      </div>
+           alt="Taller de carpintería">
     </div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 CP Carpintería</p>
-  <p>Teléfono: <a href="tel:+5491166823619">11-6682-3619</a></p>
-  <p>Email: <a href="mailto:Cpcarpinteria@gmail.com">Cpcarpinteria@gmail.com</a></p>
-  <p>WhatsApp: <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 11-6682-3619</a></p>
-  <p>Código Postal: 1661</p>
 </footer>
 
 <script>
@@ -407,22 +396,9 @@ document.addEventListener("DOMContentLoaded", function(){
   const submenu = document.getElementById("contacto-submenu");
   const contactoToggle = document.getElementById("contacto-toggle");
 
-  function toggleMenu(){
-    menu.classList.toggle("active");
-    toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
-  }
-
   toggle.addEventListener("click", function(e){
     e.stopPropagation();
-    toggleMenu();
-  });
-
-  // Accesibilidad: Enter o espacio
-  toggle.addEventListener("keydown", function(e){
-    if(e.key === "Enter" || e.key === " "){
-      e.preventDefault();
-      toggleMenu();
-    }
+    menu.classList.toggle("active");
   });
 
   contactoToggle.addEventListener("click", function(e){
@@ -431,13 +407,11 @@ document.addEventListener("DOMContentLoaded", function(){
     submenu.classList.toggle("active");
   });
 
-  // Cerrar menú al hacer click fuera
   document.addEventListener("click", function(e){
     if(menu.classList.contains("active") &&
        !menu.contains(e.target) &&
        !toggle.contains(e.target)){
       menu.classList.remove("active");
-      toggle.setAttribute("aria-expanded","false");
       submenu.classList.remove("active");
     }
   });
