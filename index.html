@@ -34,13 +34,14 @@ header{
 
 header img{ height:80px; }
 
+/* BOTÓN HAMBURGUESA */
 .menu-toggle{
   font-size:28px;
   cursor:pointer;
   user-select:none;
 }
 
-/* MENÚ */
+/* MENÚ DESPLEGABLE (NO SE ASOMA) */
 nav{
   display:flex;
   flex-direction:column;
@@ -51,6 +52,8 @@ nav{
   border-radius:8px;
   width:220px;
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
+
+  /* CERRADO */
   max-height:0;
   padding:0;
   overflow:hidden;
@@ -70,7 +73,7 @@ nav a{
   cursor:pointer;
 }
 
-/* SUBMENÚ */
+/* Submenú Contacto (ANIMADO) */
 .submenu{
   display:flex;
   flex-direction:column;
@@ -141,10 +144,9 @@ nav a{
   font-weight:bold;
   transition:.3s;
 }
-
 .btn:hover{ background:var(--color-hover); }
 
-/* QUIÉNES */
+/* QUIÉNES SOMOS */
 .quienes{
   background:white;
   padding:80px 20px;
@@ -234,21 +236,20 @@ footer a{
   <img src="logo.png" alt="Logo CP Carpintería" />
 
   <div class="menu-toggle"
-       onclick="toggleMenu()"
        aria-label="Abrir menú"
        role="button"
        aria-expanded="false">☰</div>
 
-  <nav id="menu">
+  <nav id="menu" aria-label="Menú principal">
     <a href="#productos">Productos</a>
     <a href="#quienes">Quiénes somos</a>
 
-    <a id="contacto-toggle" href="javascript:void(0)" onclick="toggleSubmenu(event)">Contacto ▼</a>
+    <a id="contacto-toggle" href="javascript:void(0)">Contacto ▼</a>
 
     <div id="contacto-submenu" class="submenu">
       <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
       <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
-      <a href="https://wa.me/5491166823619" target="_blank">🟢 WhatsApp</a>
+      <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 WhatsApp: 11-6682-3619</a>
       <a href="javascript:void(0)">Código Postal: 1661</a>
     </div>
   </nav>
@@ -265,13 +266,24 @@ footer a{
   <div class="quienes-contenido">
     <p>
       En <strong>CP Carpintería</strong> trabajamos la madera con pasión y compromiso.
-      Fabricamos muebles en pino macizo combinando diseño, resistencia y terminaciones cuidadas.
+      Somos un emprendimiento dedicado a la fabricación de muebles en pino macizo,
+      combinando diseño funcional, resistencia y terminaciones cuidadas.
+    </p>
+
+    <p>
+      Cada pieza es realizada con atención al detalle y materiales de calidad,
+      buscando ofrecer muebles duraderos y personalizados para cada cliente.
+    </p>
+
+    <p>
+      Nuestro objetivo es simple: crear muebles sólidos, prácticos y hechos para durar.
     </p>
   </div>
 </section>
 
 <section id="productos" class="productos">
   <h2>Nuestros Productos</h2>
+
   <div class="grid">
     <div class="card">
       <img src="https://via.placeholder.com/400x300" alt="Mesa plegable 70x70" />
@@ -280,7 +292,7 @@ footer a{
         <p>Pino macizo reforzada</p>
         <a class="whatsapp"
            href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70"
-           target="_blank">
+           target="_blank" rel="noopener noreferrer">
           Consultar por WhatsApp
         </a>
       </div>
@@ -290,21 +302,40 @@ footer a{
 
 <footer>
   <p>© 2026 CP Carpintería</p>
+  <p>Teléfono: <a href="tel:+5491166823619">11-6682-3619</a></p>
+  <p>Email: <a href="mailto:Cpcarpinteria@gmail.com">Cpcarpinteria@gmail.com</a></p>
+  <p>WhatsApp: <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 11-6682-3619</a></p>
+  <p>Código Postal: 1661</p>
 </footer>
 
 <script>
-function toggleMenu(){
+document.addEventListener("DOMContentLoaded", function(){
   const menu = document.getElementById("menu");
-  menu.classList.toggle("active");
-  document.querySelector(".menu-toggle")
-    .setAttribute("aria-expanded", menu.classList.contains("active"));
-}
+  const toggle = document.querySelector(".menu-toggle");
+  const submenu = document.getElementById("contacto-submenu");
+  const contactoToggle = document.getElementById("contacto-toggle");
 
-function toggleSubmenu(e){
-  if(e) e.preventDefault();
-  document.getElementById("contacto-submenu")
-    .classList.toggle("active");
-}
+  // Abrir / cerrar menú principal
+  toggle.addEventListener("click", function(){
+    menu.classList.toggle("active");
+    toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
+  });
+
+  // Abrir / cerrar submenú contacto
+  contactoToggle.addEventListener("click", function(e){
+    e.preventDefault();
+    submenu.classList.toggle("active");
+  });
+
+  // Cerrar menú si se hace click fuera
+  document.addEventListener("click", function(e){
+    if(menu.classList.contains("active") && !menu.contains(e.target) && !toggle.contains(e.target)){
+      menu.classList.remove("active");
+      toggle.setAttribute("aria-expanded", "false");
+      submenu.classList.remove("active");
+    }
+  });
+});
 </script>
 
 </body>
