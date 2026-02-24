@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CP Carpintería | Muebles de madera maciza</title>
 
 <style>
-:root {
-  --color-primario: #c69c6d;
-  --color-hover: #b38655;
-  --color-fondo: #f6f2ed;
-  --color-texto: #333;
-  --color-whatsapp: #25D366;
-  --color-whatsapp-hover: #1ebe5d;
+:root{
+  --color-primario:#c69c6d;
+  --color-hover:#b38655;
+  --color-fondo:#f6f2ed;
+  --color-texto:#333;
+  --color-whatsapp:#25D366;
+  --color-whatsapp-hover:#1ebe5d;
 }
 
 body{
   margin:0;
   font-family:'Segoe UI', Arial, sans-serif;
-  background: var(--color-fondo);
-  color: var(--color-texto);
+  background:var(--color-fondo);
+  color:var(--color-texto);
 }
 
 /* HEADER */
@@ -32,17 +32,16 @@ header{
   position:relative;
 }
 
-header img{
-  height:80px;
-}
+header img{ height:80px; }
 
 /* BOTÓN HAMBURGUESA */
 .menu-toggle{
   font-size:28px;
   cursor:pointer;
+  user-select:none;
 }
 
-/* MENÚ DESPLEGABLE */
+/* MENÚ DESPLEGABLE (NO SE ASOMA) */
 nav{
   display:flex;
   flex-direction:column;
@@ -50,17 +49,20 @@ nav{
   top:100%;
   right:20px;
   background:#eeeeee;
-  padding:20px;
   border-radius:8px;
   width:220px;
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
+
+  /* CERRADO */
   max-height:0;
+  padding:0;               /* clave: sin padding cuando está cerrado */
   overflow:hidden;
-  transition:max-height 0.3s ease;
+  transition:max-height .3s ease, padding .3s ease;
 }
 
 nav.active{
   max-height:600px;
+  padding:20px;            /* aparece al abrir */
 }
 
 nav a{
@@ -71,19 +73,27 @@ nav a{
   cursor:pointer;
 }
 
-/* Submenú Contacto */
+/* Submenú Contacto (ANIMADO) */
 .submenu{
-  display: none;               /* oculto al cargar */
-  flex-direction: column;
+  display:flex;            /* dejamos flex siempre, así se puede animar */
+  flex-direction:column;
   padding-left:10px;
   margin-top:5px;
   margin-bottom:5px;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
+  overflow:hidden;
+
+  max-height:0;
+  opacity:0;
+  transition:max-height .3s ease, opacity .2s ease;
+}
+
+.submenu.active{
+  max-height:240px;        /* ajustá si agregás más items */
+  opacity:1;
 }
 
 .submenu a{
-  font-weight: normal;
+  font-weight:normal;
   color:#444;
   margin:5px 0;
   font-size:14px;
@@ -107,17 +117,14 @@ nav a{
   display:inline-block;
   margin-top:20px;
   padding:14px 30px;
-  background: var(--color-primario);
+  background:var(--color-primario);
   color:white;
   text-decoration:none;
   border-radius:6px;
   font-weight:bold;
-  transition:0.3s;
+  transition:.3s;
 }
-
-.btn:hover{
-  background: var(--color-hover);
-}
+.btn:hover{ background:var(--color-hover); }
 
 /* SECCIÓN QUIÉNES SOMOS */
 .quienes{
@@ -125,11 +132,7 @@ nav a{
   padding:80px 20px;
   text-align:center;
 }
-
-.quienes h2{
-  margin-bottom:30px;
-}
-
+.quienes h2{ margin-bottom:30px; }
 .quienes-contenido{
   max-width:800px;
   margin:0 auto;
@@ -157,36 +160,24 @@ nav a{
   border-radius:10px;
   overflow:hidden;
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
-  transition:0.3s;
+  transition:.3s;
 }
-
-.card:hover{
-  transform:translateY(-5px);
-}
-
-.card img{
-  width:100%;
-}
-
-.card-content{
-  padding:20px;
-}
+.card:hover{ transform:translateY(-5px); }
+.card img{ width:100%; }
+.card-content{ padding:20px; }
 
 .whatsapp{
   display:inline-block;
   margin-top:15px;
   padding:10px 15px;
-  background: var(--color-whatsapp);
+  background:var(--color-whatsapp);
   color:white;
   text-decoration:none;
   border-radius:5px;
   font-weight:bold;
-  transition:0.3s;
+  transition:.3s;
 }
-
-.whatsapp:hover{
-  background: var(--color-whatsapp-hover);
-}
+.whatsapp:hover{ background:var(--color-whatsapp-hover); }
 
 /* FOOTER */
 footer{
@@ -196,7 +187,6 @@ footer{
   padding:30px;
   margin-top:60px;
 }
-
 footer a{
   color:white;
   text-decoration:none;
@@ -204,18 +194,11 @@ footer a{
 
 /* MEDIA QUERIES */
 @media (max-width:600px){
-  .hero{
-    padding:80px 10px;
-  }
-  .quienes{
-    padding:50px 10px;
-  }
-  .grid{
-    gap:20px;
-  }
-  .card{
-    width:90%;
-  }
+  header{ padding:15px 20px; }
+  .hero{ padding:80px 10px; }
+  .quienes{ padding:50px 10px; }
+  .grid{ gap:20px; }
+  .card{ width:90%; }
 }
 </style>
 </head>
@@ -223,23 +206,26 @@ footer a{
 <body>
 
 <header>
-  <img src="logo.png" alt="Logo CP Carpintería">
+  <img src="logo.png" alt="Logo CP Carpintería" />
 
-  <div class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú" role="button" aria-expanded="false">
-    ☰
-  </div>
+  <div class="menu-toggle"
+       onclick="toggleMenu()"
+       aria-label="Abrir menú"
+       role="button"
+       aria-expanded="false">☰</div>
 
   <nav id="menu" aria-label="Menú principal">
     <a href="#productos">Productos</a>
     <a href="#quienes">Quiénes somos</a>
-    
+
     <!-- Contacto con submenú -->
-    <a id="contacto-toggle" onclick="toggleSubmenu()">Contacto ▼</a>
+    <a id="contacto-toggle" href="javascript:void(0)" onclick="toggleSubmenu(event)">Contacto ▼</a>
+
     <div id="contacto-submenu" class="submenu">
       <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
       <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
       <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 WhatsApp: 11-6682-3619</a>
-      <a href="#">Código Postal: 1661</a>
+      <a href="javascript:void(0)">Código Postal: 1661</a>
     </div>
   </nav>
 </header>
@@ -258,12 +244,10 @@ footer a{
       Somos un emprendimiento dedicado a la fabricación de muebles en pino macizo,
       combinando diseño funcional, resistencia y terminaciones cuidadas.
     </p>
-
     <p>
       Cada pieza es realizada con atención al detalle y materiales de calidad,
       buscando ofrecer muebles duraderos y personalizados para cada cliente.
     </p>
-
     <p>
       Nuestro objetivo es simple: crear muebles sólidos, prácticos y hechos para durar.
     </p>
@@ -274,20 +258,18 @@ footer a{
   <h2>Nuestros Productos</h2>
 
   <div class="grid">
-
     <div class="card">
-      <img src="https://via.placeholder.com/400x300" alt="Mesa plegable 70x70">
+      <img src="https://via.placeholder.com/400x300" alt="Mesa plegable 70x70" />
       <div class="card-content">
         <h3>Mesa Plegable 70x70</h3>
         <p>Pino macizo reforzada</p>
-        <a class="whatsapp" 
-           href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70" 
+        <a class="whatsapp"
+           href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70"
            target="_blank" rel="noopener noreferrer">
-           Consultar por WhatsApp
+          Consultar por WhatsApp
         </a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -301,21 +283,44 @@ footer a{
 
 <script>
 function toggleMenu(){
-  var menu = document.getElementById("menu");
+  const menu = document.getElementById("menu");
   menu.classList.toggle("active");
-  var toggle = document.querySelector(".menu-toggle");
+
+  const toggle = document.querySelector(".menu-toggle");
   toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
 }
 
-// Submenú contacto con animación
-function toggleSubmenu(){
-  var submenu = document.getElementById("contacto-submenu");
-  if(submenu.style.display === 'flex'){
-    submenu.style.display = 'none';
-  } else {
-    submenu.style.display = 'flex';
-  }
+function toggleSubmenu(e){
+  if(e) e.preventDefault();
+  const submenu = document.getElementById("contacto-submenu");
+  submenu.classList.toggle("active");
 }
+
+/* Cierra el menú tocando fuera */
+document.addEventListener("click", function(e){
+  const menu = document.getElementById("menu");
+  const toggle = document.querySelector(".menu-toggle");
+
+  const clickDentroMenu = menu.contains(e.target);
+  const clickEnToggle = toggle.contains(e.target);
+
+  if(menu.classList.contains("active") && !clickDentroMenu && !clickEnToggle){
+    menu.classList.remove("active");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+});
+
+/* Cierra el menú al tocar un link (excepto Contacto) */
+document.querySelectorAll("#menu a").forEach(a=>{
+  a.addEventListener("click", ()=>{
+    if(a.id === "contacto-toggle") return;
+
+    const menu = document.getElementById("menu");
+    const toggle = document.querySelector(".menu-toggle");
+    menu.classList.remove("active");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+});
 </script>
 
 </body>
