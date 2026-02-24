@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dormitorio | CP Carpintería</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f6f2ed;
+}
+
+header{
+  background:#eeeeee;
+  padding:15px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header img{ height:60px; }
+
+header a{
+  text-decoration:none;
+  color:#333;
+  font-weight:bold;
+}
+
+/* PRODUCTO */
+.producto{
+  max-width:900px;
+  margin:60px auto;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  overflow:hidden;
+}
+
+.carousel{
+  position:relative;
+  overflow:hidden;
+}
+
+.carousel-track{
+  display:flex;
+  transition:transform 0.3s ease;
+}
+
+.carousel img{
+  width:100%;
+  height:450px;
+  object-fit:cover;
+}
+
+button{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:white;
+  border:none;
+  font-size:20px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+.prev{ left:10px; }
+.next{ right:10px; }
+
+.info{
+  padding:25px;
+  text-align:center;
+}
+
+.whatsapp{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 18px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">
+    <img src="logo.png">
+  </a>
+  <a href="index.html">← Volver</a>
+</header>
+
+<div class="producto">
+
+  <div class="carousel">
+    <div class="carousel-track" id="track">
+      <img src="imagenes/dormitorio/mesadeluz.png">
+      <img src="imagenes/dormitorio/mesadeluz2.png">
+      <img src="imagenes/dormitorio/mesadeluz3.png">
+      <img src="imagenes/dormitorio/mesadeluz4.png">
+      <img src="imagenes/dormitorio/mesadeluz5.png">
+    </div>
+
+    <button class="prev" onclick="prev()">‹</button>
+    <button class="next" onclick="next()">›</button>
+  </div>
+
+  <div class="info">
+    <h2>Mesa de Luz</h2>
+    <p>Mueble estándar para dormitorio.</p>
+
+    <a class="whatsapp"
+       href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20de%20Luz"
+       target="_blank">
+       Consultar por WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<script>
+let index = 0;
+const track = document.getElementById("track");
+const total = track.children.length;
+
+function update(){
+  track.style.transform = "translateX(-" + (index * 100) + "%)";
+}
+
+function next(){
+  index = (index + 1) % total;
+  update();
+}
+
+function prev(){
+  index = (index - 1 + total) % total;
+  update();
+}
+</script>
+
+</body>
+</html>
