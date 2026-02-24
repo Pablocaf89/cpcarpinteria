@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dormitorio | CP Carpintería</title>
 
 <style>
 :root{
   --bg:#f6f2ed;
-  --text:#333;
-  --muted:#666;
-  --card:#fff;
-  --shadow:0 12px 28px rgba(0,0,0,.14);
-  --shadow2:0 10px 22px rgba(0,0,0,.12);
   --wa:#25D366;
   --waHover:#1ebe5d;
   --price:#c69c6d;
 }
 
-*{ box-sizing:border-box; }
-
 body{
   margin:0;
   font-family:'Segoe UI', Arial, sans-serif;
   background:var(--bg);
-  color:var(--text);
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
   background:#eeeeee;
   padding:15px 40px;
@@ -37,290 +29,154 @@ header{
 }
 
 header img{ height:60px; }
+header a{ text-decoration:none; color:#333; font-weight:700; }
 
-header a{
-  text-decoration:none;
-  color:#333;
-  font-weight:700;
-}
-
-/* ===== CONTENEDOR ===== */
+/* CONTENEDOR */
 .wrap{
-  max-width:1100px;
-  margin:0 auto;
-  padding:50px 20px 80px;
-}
-
-h1{
-  margin:0 0 20px;
-  font-size:32px;
-  text-align:center;
-}
-
-/* ===== FICHA (CARD) ===== */
-.grid{
+  max-width:1000px;
+  margin:60px auto;
   display:flex;
   justify-content:center;
 }
 
-.product-card{
-  width:360px;               /* ficha chica */
-  background:var(--card);
+/* FICHA */
+.card{
+  width:340px;
+  background:white;
   border-radius:12px;
   overflow:hidden;
-  box-shadow:var(--shadow2);
+  box-shadow:0 12px 25px rgba(0,0,0,.15);
   cursor:pointer;
-  transition:transform .2s ease, box-shadow .2s ease;
-  border:1px solid rgba(0,0,0,.06);
+  transition:.2s;
 }
 
-.product-card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow);
-}
+.card:hover{ transform:translateY(-4px); }
 
-.product-media{
-  position:relative;
-  overflow:hidden;
-  background:#eee;
-}
-
-.carousel{
-  overflow:hidden;
-}
-
-.track{
-  display:flex;
-  transition:transform .25s ease;
-}
-
-.slide{
-  min-width:100%;
-  height:220px;
-}
-
-.slide img{
+.card img{
   width:100%;
-  height:100%;
+  height:220px;
   object-fit:cover;
-  display:block;
 }
 
-/* Flechas del carrusel (ficha) */
-.arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  border:none;
-  cursor:pointer;
-  background:rgba(255,255,255,.9);
-  box-shadow:0 8px 18px rgba(0,0,0,.18);
-  font-size:18px;
-  font-weight:700;
-  user-select:none;
+.card-body{
+  padding:15px;
 }
 
-.arrow:hover{ background:#fff; }
-
-.arrow.prev{ left:10px; }
-.arrow.next{ right:10px; }
-
-/* Info base de la ficha */
-.product-body{
-  padding:16px 16px 18px;
-  text-align:left;
+.card-body h3{
+  margin:0 0 5px;
 }
 
-.product-title{
-  margin:0 0 6px;
-  font-size:18px;
+.price{
+  font-weight:800;
+  color:var(--price);
 }
 
-.product-sub{
-  margin:0 0 10px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.35;
-}
-
-.product-price{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:10px;
-}
-
-.badge-price{
-  display:inline-block;
-  background:rgba(198,156,109,.15);
-  color:#7a4f24;
-  padding:8px 12px;
-  border-radius:999px;
-  font-weight:900;
-}
-
-/* ===== MODAL (POPUP) ===== */
+/* ===== MODAL ===== */
 .modal{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.65);
   z-index:9999;
-  align-items:center;
   justify-content:center;
-  padding:18px;
+  align-items:center;
+  padding:15px;
 }
 
 .modal.open{ display:flex; }
 
 .modal-box{
-  width:min(760px, 100%);
-  background:#fff;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 20px 55px rgba(0,0,0,.25);
+  background:white;
+  width:90%;
+  max-width:700px;          /* MÁS CHICO */
+  max-height:90vh;          /* NO se pasa de pantalla */
+  overflow:auto;            /* scroll interno si hace falta */
+  border-radius:12px;
   position:relative;
 }
 
-.modal-close{
-  position:absolute;
-  top:10px;
-  right:12px;
-  border:none;
-  background:transparent;
-  font-size:26px;
-  cursor:pointer;
-  line-height:1;
-  z-index:2;
-}
-
-/* ===== CARRUSEL EN MODAL (FOTOS COMPLETAS) ===== */
-.modal-carousel{
+/* CARRUSEL GRANDE */
+.carousel{
   position:relative;
   overflow:hidden;
-  background:#fff;
+  background:#f0f0f0;
 }
 
-.modal-track{
+.track{
   display:flex;
   transition:transform .3s ease;
 }
 
-.modal-slide{
+.slide{
   min-width:100%;
-  height:520px;
+  height:380px;            /* MÁS BAJO */
   display:flex;
-  align-items:center;
   justify-content:center;
-  background:#fff;
+  align-items:center;
+  background:white;
 }
 
-.modal-slide img{
+.slide img{
   max-width:100%;
   max-height:100%;
-  object-fit:contain; /* 👈 para que se vean completas */
-  display:block;
+  object-fit:contain;      /* imagen completa */
 }
 
-.modal-arrow{
+/* FLECHAS */
+.arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:42px;
-  height:42px;
-  border-radius:50%;
+  background:white;
   border:none;
+  width:38px;
+  height:38px;
+  border-radius:50%;
   cursor:pointer;
-  background:rgba(255,255,255,.92);
-  box-shadow:0 8px 18px rgba(0,0,0,.18);
-  font-size:18px;
-  font-weight:800;
-  user-select:none;
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
-.modal-arrow.prev{ left:12px; }
-.modal-arrow.next{ right:12px; }
-
-/* Texto modal */
-.modal-header{
-  padding:18px 18px 0;
-}
-
-.modal-header h2{
-  margin:0;
-  font-size:22px;
-}
+.prev{ left:12px; }
+.next{ right:12px; }
 
 .modal-content{
-  padding:16px 18px 18px;
-  color:#444;
+  padding:20px;
+}
+
+.modal-content h2{
+  margin:0 0 10px;
 }
 
 .modal-content p{
-  margin:0 0 12px;
   line-height:1.6;
 }
 
-.modal-details{
-  background:#faf7f2;
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:12px;
-  padding:14px;
-  margin:12px 0 16px;
-}
-
-.detail-row{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  padding:8px 0;
-  border-bottom:1px dashed rgba(0,0,0,.12);
-  font-size:14px;
-}
-
-.detail-row:last-child{ border-bottom:none; }
-
-.modal-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:12px 14px;
-  border-radius:10px;
-  text-decoration:none;
+.price-modal{
+  font-size:20px;
   font-weight:800;
-  border:1px solid rgba(0,0,0,.08);
-  cursor:pointer;
+  color:var(--price);
+  margin:10px 0;
 }
 
-.btn-wa{
+.whatsapp{
+  display:inline-block;
+  margin-top:10px;
+  padding:12px 18px;
   background:var(--wa);
   color:white;
-  border:none;
-}
-.btn-wa:hover{ background:var(--waHover); }
-
-.btn-secondary{
-  background:#fff;
-  color:#333;
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
 }
 
-@media (max-width:600px){
-  header{ padding:15px 20px; }
-  h1{ font-size:26px; }
-  .product-card{ width:100%; }
-  .slide{ height:210px; }
-  .modal-slide{ height:360px; }
+.whatsapp:hover{ background:var(--waHover); }
+
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:28px;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -328,177 +184,90 @@ h1{
 <body>
 
 <header>
-  <a href="index.html">
-    <img src="logo.png" alt="Logo CP Carpintería" />
-  </a>
+  <a href="index.html"><img src="logo.png"></a>
   <a href="index.html">← Volver</a>
 </header>
 
 <div class="wrap">
-  <h1>Dormitorio</h1>
 
-  <div class="grid">
-    <!-- ===== FICHA CLICKEABLE ===== -->
-    <article class="product-card" id="card-mesaluz" aria-label="Ver detalles del producto">
-      <div class="product-media">
-        <div class="carousel">
-          <div class="track" id="track">
-            <div class="slide"><img src="imagenes/dormitorio/mesadeluz.png"  alt="Mesa de luz flotante - foto 1"></div>
-            <div class="slide"><img src="imagenes/dormitorio/mesadeluz2.png" alt="Mesa de luz flotante - foto 2"></div>
-            <div class="slide"><img src="imagenes/dormitorio/mesadeluz3.png" alt="Mesa de luz flotante - foto 3"></div>
-            <div class="slide"><img src="imagenes/dormitorio/mesadeluz4.png" alt="Mesa de luz flotante - foto 4"></div>
-            <div class="slide"><img src="imagenes/dormitorio/mesadeluz5.png" alt="Mesa de luz flotante - foto 5"></div>
-          </div>
-        </div>
-
-        <!-- Flechas ficha: NO abren modal -->
-        <button class="arrow prev" id="prevBtn" aria-label="Foto anterior">‹</button>
-        <button class="arrow next" id="nextBtn" aria-label="Foto siguiente">›</button>
-      </div>
-
-      <div class="product-body">
-        <h3 class="product-title">Mesa de luz flotante</h3>
-        <p class="product-sub">45cm x 32cm x 32cm • 1 cajón + estante</p>
-
-        <div class="product-price">
-          <span class="badge-price">$75.000</span>
-          <span style="font-size:13px;color:var(--muted);">Tocá para ver detalles</span>
-        </div>
-      </div>
-    </article>
+  <!-- FICHA -->
+  <div class="card" onclick="openModal()">
+    <img src="imagenes/dormitorio/mesadeluz.png">
+    <div class="card-body">
+      <h3>Mesa de luz flotante</h3>
+      <p>45cm x 32cm x 32cm</p>
+      <span class="price">$75.000</span>
+    </div>
   </div>
+
 </div>
 
-<!-- ===== MODAL DETALLES (CON FOTOS COMPLETAS) ===== -->
-<div class="modal" id="modal" aria-hidden="true">
-  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Detalles del producto">
-    <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
+<!-- POPUP -->
+<div class="modal" id="modal">
 
-    <!-- Carrusel dentro del modal -->
-    <div class="modal-carousel">
-      <div class="modal-track" id="modalTrack">
-        <div class="modal-slide"><img src="imagenes/dormitorio/mesadeluz.png"  alt="Mesa de luz flotante - foto 1"></div>
-        <div class="modal-slide"><img src="imagenes/dormitorio/mesadeluz2.png" alt="Mesa de luz flotante - foto 2"></div>
-        <div class="modal-slide"><img src="imagenes/dormitorio/mesadeluz3.png" alt="Mesa de luz flotante - foto 3"></div>
-        <div class="modal-slide"><img src="imagenes/dormitorio/mesadeluz4.png" alt="Mesa de luz flotante - foto 4"></div>
-        <div class="modal-slide"><img src="imagenes/dormitorio/mesadeluz5.png" alt="Mesa de luz flotante - foto 5"></div>
+  <div class="modal-box">
+
+    <span class="close" onclick="closeModal()">×</span>
+
+    <div class="carousel">
+      <div class="track" id="track">
+        <div class="slide"><img src="imagenes/dormitorio/mesadeluz.png"></div>
+        <div class="slide"><img src="imagenes/dormitorio/mesadeluz2.png"></div>
+        <div class="slide"><img src="imagenes/dormitorio/mesadeluz3.png"></div>
+        <div class="slide"><img src="imagenes/dormitorio/mesadeluz4.png"></div>
+        <div class="slide"><img src="imagenes/dormitorio/mesadeluz5.png"></div>
       </div>
 
-      <button class="modal-arrow prev" id="modalPrev" aria-label="Foto anterior">‹</button>
-      <button class="modal-arrow next" id="modalNext" aria-label="Foto siguiente">›</button>
-    </div>
-
-    <div class="modal-header">
-      <h2>Mesa de luz flotante</h2>
+      <button class="arrow prev" onclick="prev()">‹</button>
+      <button class="arrow next" onclick="next()">›</button>
     </div>
 
     <div class="modal-content">
+      <h2>Mesa de luz flotante</h2>
       <p>
-        Mesa de luz flotante de <strong>45cm x 32cm x 32cm</strong>, con <strong>un cajón</strong> y <strong>un estante</strong>.
-        Realizada en <strong>melamina de 18mm</strong> con <strong>correderas metálicas</strong>.
+        Mesa de luz flotante de 45cm x 32cm x 32cm con un cajón,
+        un estante realizado en melamina de 18mm con correderas metálicas.
       </p>
 
-      <div class="modal-details">
-        <div class="detail-row"><span>Medidas</span><strong>45cm x 32cm x 32cm</strong></div>
-        <div class="detail-row"><span>Material</span><strong>Melamina 18mm</strong></div>
-        <div class="detail-row"><span>Detalles</span><strong>1 cajón + 1 estante</strong></div>
-        <div class="detail-row"><span>Correderas</span><strong>Metálicas</strong></div>
-        <div class="detail-row"><span>Precio</span><strong>$75.000</strong></div>
-      </div>
+      <div class="price-modal">$75.000</div>
 
-      <div class="modal-actions">
-        <a class="btn btn-wa"
-           href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20de%20luz%20flotante%2045x32x32%20($75.000)"
-           target="_blank" rel="noopener noreferrer">
-          Consultar por WhatsApp
-        </a>
-        <button class="btn btn-secondary" id="closeModal2">Cerrar</button>
-      </div>
+      <a class="whatsapp"
+         href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20de%20luz%20flotante%2045x32x32"
+         target="_blank">
+        Consultar por WhatsApp
+      </a>
     </div>
+
   </div>
+
 </div>
 
 <script>
-/* ===== Carrusel en ficha ===== */
 let index = 0;
 const track = document.getElementById("track");
 const total = track.children.length;
 
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-function updateCard(){
+function update(){
   track.style.transform = "translateX(-" + (index * 100) + "%)";
 }
-function nextCard(){
+
+function next(){
   index = (index + 1) % total;
-  updateCard();
+  update();
 }
-function prevCard(){
+
+function prev(){
   index = (index - 1 + total) % total;
-  updateCard();
+  update();
 }
-
-/* Flechas NO abren modal */
-prevBtn.addEventListener("click", function(e){ e.stopPropagation(); prevCard(); });
-nextBtn.addEventListener("click", function(e){ e.stopPropagation(); nextCard(); });
-
-/* ===== Modal ===== */
-const card = document.getElementById("card-mesaluz");
-const modal = document.getElementById("modal");
-const closeModal = document.getElementById("closeModal");
-const closeModal2 = document.getElementById("closeModal2");
-
-/* ===== Carrusel en modal ===== */
-let modalIndex = 0;
-const modalTrack = document.getElementById("modalTrack");
-const modalTotal = modalTrack.children.length;
-
-const modalPrev = document.getElementById("modalPrev");
-const modalNext = document.getElementById("modalNext");
-
-function updateModalCarousel(){
-  modalTrack.style.transform = "translateX(-" + (modalIndex * 100) + "%)";
-}
-function nextModal(){
-  modalIndex = (modalIndex + 1) % modalTotal;
-  updateModalCarousel();
-}
-function prevModal(){
-  modalIndex = (modalIndex - 1 + modalTotal) % modalTotal;
-  updateModalCarousel();
-}
-
-modalPrev.addEventListener("click", function(e){ e.stopPropagation(); prevModal(); });
-modalNext.addEventListener("click", function(e){ e.stopPropagation(); nextModal(); });
 
 function openModal(){
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-
-  /* sincroniza el carrusel del modal con la foto actual de la ficha */
-  modalIndex = index;
-  updateModalCarousel();
+  document.getElementById("modal").classList.add("open");
 }
 
-function close(){
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
+function closeModal(){
+  document.getElementById("modal").classList.remove("open");
 }
-
-card.addEventListener("click", openModal);
-closeModal.addEventListener("click", close);
-closeModal2.addEventListener("click", close);
-
-/* Cerrar tocando afuera */
-modal.addEventListener("click", function(e){
-  if(e.target === modal) close();
-});
-
-/* Cerrar con ESC */
-document.addEventListener("keydown", function(e){
-  if(e.key === "Escape" && modal.classList.contains("open")) close();
-});
 </script>
 
 </body>
