@@ -1,62 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Living | CP Carpintería</title>
 
 <style>
+:root{
+  --bg:#f6f2ed;
+  --text:#333;
+  --muted:#666;
+  --card:#fff;
+  --shadow:0 12px 28px rgba(0,0,0,.14);
+  --shadow2:0 10px 22px rgba(0,0,0,.12);
+  --wa:#25D366;
+  --waHover:#1ebe5d;
+}
+
+*{ box-sizing:border-box; }
+
 body{
   margin:0;
   font-family:'Segoe UI', Arial, sans-serif;
-  background:#f6f2ed;
-  color:#333;
+  background:var(--bg);
+  color:var(--text);
 }
 
+/* HEADER */
 header{
   background:#eeeeee;
-  padding:20px;
-  text-align:center;
+  padding:15px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
+
+header img{ height:60px; }
 
 header a{
   text-decoration:none;
   color:#333;
-  font-weight:bold;
+  font-weight:700;
+}
+
+/* CONTENEDOR */
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:50px 20px 80px;
 }
 
 h1{
+  margin:0 0 20px;
+  font-size:32px;
   text-align:center;
-  margin-top:40px;
 }
 
-.productos-grid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:25px;
-  max-width:1100px;
-  margin:40px auto;
-  padding:0 20px;
-  min-height:200px;
+/* CARD */
+.grid{
+  display:flex;
+  justify-content:center;
 }
 
-.mensaje{
-  text-align:center;
-  grid-column:1 / -1;
+.product-card{
+  width:360px;
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:var(--shadow2);
+  cursor:pointer;
+  transition:.2s;
+  border:1px solid rgba(0,0,0,.06);
+}
+
+.product-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+}
+
+.product-media{ position:relative; overflow:hidden; background:#eee; }
+
+.carousel{ overflow:hidden; }
+
+.track{ display:flex; transition:transform .25s ease; }
+
+.slide{ min-width:100%; height:220px; }
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.9);
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
   font-size:18px;
-  color:#666;
+  font-weight:700;
 }
 
-@media (max-width:900px){
-  .productos-grid{
-    grid-template-columns:repeat(2, 1fr);
-  }
+.arrow.prev{ left:10px; }
+.arrow.next{ right:10px; }
+
+.product-body{ padding:16px 16px 18px; }
+
+.product-title{ margin:0 0 6px; font-size:18px; }
+
+.product-sub{
+  margin:0 0 10px;
+  color:var(--muted);
+  font-size:14px;
 }
 
-@media (max-width:600px){
-  .productos-grid{
-    grid-template-columns:1fr;
-  }
+.product-price{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.badge-price{
+  background:rgba(198,156,109,.15);
+  color:#7a4f24;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:900;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  opacity:0;
+  transition:.18s;
+}
+
+.modal.open{
+  display:flex;
+  opacity:1;
+}
+
+.modal-box{
+  width:min(700px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 20px 55px rgba(0,0,0,.25);
+  position:relative;
+}
+
+.modal-close{
+  position:sticky;
+  top:0;
+  margin-left:auto;
+  display:block;
+  width:42px;
+  height:42px;
+  border:none;
+  background:#fff;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.modal-carousel{ position:relative; overflow:hidden; }
+
+.modal-track{ display:flex; transition:transform .3s ease; }
+
+.modal-slide{
+  min-width:100%;
+  height:420px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-slide img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+.modal-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background:#fff;
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
+  font-size:18px;
+  font-weight:800;
+}
+
+.modal-arrow.prev{ left:12px; }
+.modal-arrow.next{ right:12px; }
+
+.modal-header{ padding:18px 18px 0; }
+
+.modal-content{ padding:16px 18px 18px; }
+
+.modal-details{
+  background:#faf7f2;
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:12px;
+  padding:14px;
+  margin:12px 0 16px;
+}
+
+.detail-row{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  border-bottom:1px dashed rgba(0,0,0,.12);
+  font-size:14px;
+}
+
+.detail-row:last-child{ border-bottom:none; }
+
+.btn{
+  display:inline-flex;
+  padding:12px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:800;
+}
+
+.btn-wa{
+  background:#25D366;
+  color:white;
+}
+
+.btn-wa:hover{ background:#1ebe5d; }
+
+@media(max-width:600px){
+  .product-card{ width:100%; }
+  .modal-slide{ height:320px; }
 }
 </style>
 </head>
@@ -64,16 +260,97 @@ h1{
 <body>
 
 <header>
-  <a href="index.html">← Volver al inicio</a>
+  <a href="index.html">
+    <img src="logo.png" alt="Logo CP Carpintería" />
+  </a>
+  <a href="index.html">← Volver</a>
 </header>
 
-<h1>Muebles de Living</h1>
+<div class="wrap">
+  <h1>Living</h1>
 
-<div class="productos-grid">
-  <div class="mensaje">
-    Próximamente productos disponibles.
+  <div class="grid">
+    <article class="product-card" id="card-rack">
+      <div class="product-media">
+        <div class="carousel">
+          <div class="track" id="track">
+            <div class="slide"><img src="imagenes/living/rack.png"></div>
+            <div class="slide"><img src="imagenes/living/rack2.png"></div>
+          </div>
+        </div>
+        <button class="arrow prev" id="prevBtn">‹</button>
+        <button class="arrow next" id="nextBtn">›</button>
+      </div>
+
+      <div class="product-body">
+        <h3 class="product-title">Rack para TV</h3>
+        <p class="product-sub">140cm x 60cm x 45cm</p>
+
+        <div class="product-price">
+          <span class="badge-price">$210.000</span>
+          <span style="font-size:13px;color:#666;">Tocá para ver detalles</span>
+        </div>
+      </div>
+    </article>
   </div>
 </div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeModal">×</button>
+
+    <div class="modal-carousel">
+      <div class="modal-track" id="modalTrack">
+        <div class="modal-slide"><img src="imagenes/living/rack.png"></div>
+        <div class="modal-slide"><img src="imagenes/living/rack2.png"></div>
+      </div>
+      <button class="modal-arrow prev" id="modalPrev">‹</button>
+      <button class="modal-arrow next" id="modalNext">›</button>
+    </div>
+
+    <div class="modal-header">
+      <h2>Rack para TV</h2>
+    </div>
+
+    <div class="modal-content">
+      <p>
+        Rack para TV de <strong>140cm x 60cm x 45cm</strong>,
+        realizado en <strong>melamina de 18mm</strong>.
+      </p>
+
+      <div class="modal-details">
+        <div class="detail-row"><span>Medidas</span><strong>140cm x 60cm x 45cm</strong></div>
+        <div class="detail-row"><span>Material</span><strong>Melamina 18mm</strong></div>
+        <div class="detail-row"><span>Precio</span><strong>$210.000</strong></div>
+      </div>
+
+      <a class="btn btn-wa"
+         href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20el%20Rack%20para%20TV%20140x60x45%20($210.000)"
+         target="_blank">
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+let index=0;
+const track=document.getElementById("track");
+const total=track.children.length;
+document.getElementById("prevBtn").onclick=e=>{e.stopPropagation();index=(index-1+total)%total;track.style.transform="translateX(-"+(index*100)+"%)"};
+document.getElementById("nextBtn").onclick=e=>{e.stopPropagation();index=(index+1)%total;track.style.transform="translateX(-"+(index*100)+"%)"};
+
+const modal=document.getElementById("modal");
+document.getElementById("card-rack").onclick=()=>{modal.classList.add("open");document.body.style.overflow="hidden"};
+document.getElementById("closeModal").onclick=()=>{modal.classList.remove("open");document.body.style.overflow=""};
+modal.onclick=e=>{if(e.target===modal){modal.classList.remove("open");document.body.style.overflow=""}};
+
+let modalIndex=0;
+const modalTrack=document.getElementById("modalTrack");
+const modalTotal=modalTrack.children.length;
+document.getElementById("modalPrev").onclick=e=>{e.stopPropagation();modalIndex=(modalIndex-1+modalTotal)%modalTotal;modalTrack.style.transform="translateX(-"+(modalIndex*100)+"%)"};
+document.getElementById("modalNext").onclick=e=>{e.stopPropagation();modalIndex=(modalIndex+1)%modalTotal;modalTrack.style.transform="translateX(-"+(modalIndex*100)+"%)"};
+</script>
 
 </body>
 </html>
