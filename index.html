@@ -5,7 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cpcarpinteria</title>
 
-<style.quienes{
+<style>
+
+body{
+  margin:0;
+  font-family:'Segoe UI', Arial, sans-serif;
+  background:#f6f2ed;
+  color:#333;
+}
+
+/* SECCIÓN QUIÉNES SOMOS */
+
+.quienes{
   background:white;
   padding:80px 20px;
   text-align:center;
@@ -21,13 +32,6 @@
   line-height:1.8;
   font-size:18px;
   color:#444;
-} >
-
-body{
-  margin:0;
-  font-family:'Segoe UI', Arial, sans-serif;
-  background:#f6f2ed;
-  color:#333;
 }
 
 /* HEADER */
@@ -52,7 +56,7 @@ header img{
   cursor:pointer;
 }
 
-/* MENÚ OCULTO */
+/* MENÚ DESPLEGABLE */
 
 nav{
   display:none;
@@ -161,7 +165,7 @@ footer{
 <body>
 
 <header>
-  <img src="logo.png">
+  <img src="logo.png" alt="Logo Cpcarpinteria">
 
   <div class="menu-toggle" onclick="toggleMenu()">
     ☰
@@ -169,7 +173,7 @@ footer{
 
   <nav id="menu">
     <a href="#productos">Productos</a>
-    <a href="#">Quienes somos</a>
+    <a href="#quienes">Quiénes somos</a>
     <a href="#">Contacto</a>
   </nav>
 </header>
@@ -179,7 +183,8 @@ footer{
   <p>Fabricación propia • Calidad premium</p>
   <a class="btn" href="#productos">Ver productos</a>
 </section>
-  <section class="quienes">
+
+<section id="quienes" class="quienes">
   <h2>Quiénes Somos</h2>
   <div class="quienes-contenido">
     <p>
@@ -197,7 +202,7 @@ footer{
       Nuestro objetivo es simple: crear muebles sólidos, prácticos y hechos para durar.
     </p>
   </div>
-  </section>
+</section>
 
 <section id="productos" class="productos">
   <h2>Nuestros Productos</h2>
@@ -236,4 +241,4 @@ function toggleMenu(){
 </script>
 
 </body>
-</html
+</html>
