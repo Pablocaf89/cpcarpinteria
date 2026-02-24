@@ -22,32 +22,53 @@ body{
   color:var(--color-texto);
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
   background:#eeeeee;
   padding:15px 40px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   position:relative;
-
-  /* ✅ clave: que quede por encima del hero */
-  z-index: 2000;
+  z-index:2000;
 }
 
-header img{ height:80px; }
+header img{
+  height:80px;
+}
 
-/* BOTÓN HAMBURGUESA */
+/* ===== BUSCADOR ===== */
+.search-container{
+  flex:1;
+  display:flex;
+  justify-content:center;
+}
+
+.search-container input{
+  width:60%;
+  max-width:400px;
+  padding:10px 18px;
+  border-radius:30px;
+  border:1px solid #ccc;
+  outline:none;
+  font-size:14px;
+  transition:.3s;
+}
+
+.search-container input:focus{
+  border-color:var(--color-primario);
+  box-shadow:0 0 8px rgba(198,156,109,.3);
+}
+
+/* ===== BOTÓN HAMBURGUESA ===== */
 .menu-toggle{
   font-size:28px;
   cursor:pointer;
   user-select:none;
-
-  /* ✅ por si acaso */
-  z-index: 2100;
+  z-index:2100;
 }
 
-/* MENÚ DESPLEGABLE */
+/* ===== MENÚ ===== */
 nav{
   display:flex;
   flex-direction:column;
@@ -58,11 +79,8 @@ nav{
   border-radius:8px;
   width:220px;
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  z-index:2200;
 
-  /* ✅ clave: por encima del hero/overlay */
-  z-index: 2200;
-
-  /* CERRADO */
   max-height:0;
   padding:0;
   overflow:hidden;
@@ -82,7 +100,7 @@ nav a{
   cursor:pointer;
 }
 
-/* Submenú Contacto (ANIMADO) */
+/* ===== SUBMENÚ ===== */
 .submenu{
   display:flex;
   flex-direction:column;
@@ -108,7 +126,7 @@ nav a{
   font-size:14px;
 }
 
-/* HERO CON IMAGEN */
+/* ================= HERO ================= */
 .hero{
   position:relative;
   background-image:url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop");
@@ -121,7 +139,6 @@ nav a{
   overflow:hidden;
 }
 
-/* Overlay oscuro */
 .hero::before{
   content:"";
   position:absolute;
@@ -129,7 +146,6 @@ nav a{
   background:rgba(0,0,0,0.55);
 }
 
-/* Contenido encima */
 .hero h2,
 .hero p,
 .hero .btn{
@@ -142,7 +158,7 @@ nav a{
   margin-bottom:15px;
 }
 
-/* BOTÓN */
+/* ===== BOTÓN PRINCIPAL ===== */
 .btn{
   display:inline-block;
   margin-top:20px;
@@ -156,14 +172,12 @@ nav a{
 }
 .btn:hover{ background:var(--color-hover); }
 
-/* QUIÉNES SOMOS */
+/* ================= QUIÉNES ================= */
 .quienes{
   background:white;
   padding:80px 20px;
   text-align:center;
 }
-
-.quienes h2{ margin-bottom:30px; }
 
 .quienes-contenido{
   max-width:800px;
@@ -173,7 +187,7 @@ nav a{
   color:#444;
 }
 
-/* PRODUCTOS */
+/* ================= PRODUCTOS ================= */
 .productos{
   padding:80px 20px;
   text-align:center;
@@ -194,11 +208,8 @@ nav a{
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
   transition:.3s;
 }
-
 .card:hover{ transform:translateY(-5px); }
-
 .card img{ width:100%; }
-
 .card-content{ padding:20px; }
 
 .whatsapp{
@@ -212,10 +223,9 @@ nav a{
   font-weight:bold;
   transition:.3s;
 }
-
 .whatsapp:hover{ background:var(--color-whatsapp-hover); }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer{
   background:#2e2e2e;
   color:white;
@@ -229,11 +239,17 @@ footer a{
   text-decoration:none;
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 @media (max-width:600px){
   header{ padding:15px 20px; }
+
+  .search-container{
+    display:none; /* ocultamos buscador en móvil */
+  }
+
   .hero{ padding:100px 15px; }
   .hero h2{ font-size:34px; }
+
   .grid{ gap:20px; }
   .card{ width:90%; }
 }
@@ -245,13 +261,17 @@ footer a{
 <header>
   <img src="logo.png" alt="Logo CP Carpintería" />
 
+  <div class="search-container">
+    <input type="text" placeholder="Buscar productos..." />
+  </div>
+
   <div class="menu-toggle"
        aria-label="Abrir menú"
        role="button"
        tabindex="0"
        aria-expanded="false">☰</div>
 
-  <nav id="menu" aria-label="Menú principal">
+  <nav id="menu">
     <a href="#productos">Productos</a>
     <a href="#quienes">Quiénes somos</a>
 
@@ -260,7 +280,7 @@ footer a{
     <div id="contacto-submenu" class="submenu">
       <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
       <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
-      <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 WhatsApp: 11-6682-3619</a>
+      <a href="https://wa.me/5491166823619" target="_blank">🟢 WhatsApp</a>
       <a href="javascript:void(0)">Código Postal: 1661</a>
     </div>
   </nav>
@@ -276,32 +296,23 @@ footer a{
   <h2>Quiénes Somos</h2>
   <div class="quienes-contenido">
     <p>
-      En <strong>CP Carpintería</strong> trabajamos la madera con pasión y compromiso.
-      Somos un emprendimiento dedicado a la fabricación de muebles en pino macizo,
-      combinando diseño funcional, resistencia y terminaciones cuidadas.
-    </p>
-    <p>
-      Cada pieza es realizada con atención al detalle y materiales de calidad,
-      buscando ofrecer muebles duraderos y personalizados para cada cliente.
-    </p>
-    <p>
-      Nuestro objetivo es simple: crear muebles sólidos, prácticos y hechos para durar.
+      En <strong>CP Carpintería</strong> trabajamos la madera con pasión y compromiso,
+      creando muebles sólidos, prácticos y hechos para durar.
     </p>
   </div>
 </section>
 
 <section id="productos" class="productos">
   <h2>Nuestros Productos</h2>
-
   <div class="grid">
     <div class="card">
-      <img src="https://via.placeholder.com/400x300" alt="Mesa plegable 70x70" />
+      <img src="https://via.placeholder.com/400x300" alt="Mesa plegable 70x70">
       <div class="card-content">
         <h3>Mesa Plegable 70x70</h3>
         <p>Pino macizo reforzada</p>
         <a class="whatsapp"
            href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70"
-           target="_blank" rel="noopener noreferrer">
+           target="_blank">
           Consultar por WhatsApp
         </a>
       </div>
@@ -311,14 +322,11 @@ footer a{
 
 <footer>
   <p>© 2026 CP Carpintería</p>
-  <p>Teléfono: <a href="tel:+5491166823619">11-6682-3619</a></p>
-  <p>Email: <a href="mailto:Cpcarpinteria@gmail.com">Cpcarpinteria@gmail.com</a></p>
-  <p>WhatsApp: <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 11-6682-3619</a></p>
-  <p>Código Postal: 1661</p>
 </footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
+
   const menu = document.getElementById("menu");
   const toggle = document.querySelector(".menu-toggle");
   const submenu = document.getElementById("contacto-submenu");
@@ -334,28 +342,20 @@ document.addEventListener("DOMContentLoaded", function(){
     toggleMenu();
   });
 
-  // Enter/Espacio en el botón
-  toggle.addEventListener("keydown", function(e){
-    if(e.key === "Enter" || e.key === " "){
-      e.preventDefault();
-      toggleMenu();
-    }
-  });
-
   contactoToggle.addEventListener("click", function(e){
     e.preventDefault();
     e.stopPropagation();
     submenu.classList.toggle("active");
   });
 
-  // Cerrar menú si se hace click fuera
   document.addEventListener("click", function(e){
     if(menu.classList.contains("active") && !menu.contains(e.target) && !toggle.contains(e.target)){
       menu.classList.remove("active");
-      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-expanded","false");
       submenu.classList.remove("active");
     }
   });
+
 });
 </script>
 
