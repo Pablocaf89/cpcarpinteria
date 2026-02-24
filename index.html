@@ -30,6 +30,9 @@ header{
   justify-content:space-between;
   align-items:center;
   position:relative;
+
+  /* ✅ clave: que quede por encima del hero */
+  z-index: 2000;
 }
 
 header img{ height:80px; }
@@ -39,9 +42,12 @@ header img{ height:80px; }
   font-size:28px;
   cursor:pointer;
   user-select:none;
+
+  /* ✅ por si acaso */
+  z-index: 2100;
 }
 
-/* MENÚ DESPLEGABLE (NO SE ASOMA) */
+/* MENÚ DESPLEGABLE */
 nav{
   display:flex;
   flex-direction:column;
@@ -52,6 +58,9 @@ nav{
   border-radius:8px;
   width:220px;
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
+
+  /* ✅ clave: por encima del hero/overlay */
+  z-index: 2200;
 
   /* CERRADO */
   max-height:0;
@@ -81,6 +90,7 @@ nav a{
   margin-top:5px;
   margin-bottom:5px;
   overflow:hidden;
+
   max-height:0;
   opacity:0;
   transition:max-height .3s ease, opacity .2s ease;
@@ -238,6 +248,7 @@ footer a{
   <div class="menu-toggle"
        aria-label="Abrir menú"
        role="button"
+       tabindex="0"
        aria-expanded="false">☰</div>
 
   <nav id="menu" aria-label="Menú principal">
@@ -269,12 +280,10 @@ footer a{
       Somos un emprendimiento dedicado a la fabricación de muebles en pino macizo,
       combinando diseño funcional, resistencia y terminaciones cuidadas.
     </p>
-
     <p>
       Cada pieza es realizada con atención al detalle y materiales de calidad,
       buscando ofrecer muebles duraderos y personalizados para cada cliente.
     </p>
-
     <p>
       Nuestro objetivo es simple: crear muebles sólidos, prácticos y hechos para durar.
     </p>
@@ -315,15 +324,27 @@ document.addEventListener("DOMContentLoaded", function(){
   const submenu = document.getElementById("contacto-submenu");
   const contactoToggle = document.getElementById("contacto-toggle");
 
-  // Abrir / cerrar menú principal
-  toggle.addEventListener("click", function(){
+  function toggleMenu(){
     menu.classList.toggle("active");
     toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
+  }
+
+  toggle.addEventListener("click", function(e){
+    e.stopPropagation();
+    toggleMenu();
   });
 
-  // Abrir / cerrar submenú contacto
+  // Enter/Espacio en el botón
+  toggle.addEventListener("keydown", function(e){
+    if(e.key === "Enter" || e.key === " "){
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
   contactoToggle.addEventListener("click", function(e){
     e.preventDefault();
+    e.stopPropagation();
     submenu.classList.toggle("active");
   });
 
