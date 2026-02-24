@@ -8,67 +8,87 @@
 <style>
 body{
   margin:0;
-  font-family: Arial, sans-serif;
-  background:#f4f1ed;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background:#f8f6f3;
   color:#333;
 }
 
 header{
-  background:#3e2c1c;
-  color:white;
-  padding:20px;
-  text-align:center;
+  background:#2c1f14;
+  padding:15px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-header h1{
-  margin:0;
-  font-size:28px;
-  letter-spacing:2px;
+header img{
+  height:60px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:25px;
+  font-weight:500;
 }
 
 .hero{
-  background:#e6ded6;
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+  url('https://images.unsplash.com/photo-1582582429416-3f4e3c7b6b0a');
+  background-size:cover;
+  background-position:center;
+  color:white;
   text-align:center;
-  padding:80px 20px;
+  padding:120px 20px;
 }
 
 .hero h2{
+  font-size:40px;
   margin-bottom:10px;
 }
 
 .btn{
   display:inline-block;
   margin-top:20px;
-  padding:12px 25px;
-  background:#3e2c1c;
+  padding:14px 30px;
+  background:#b8894f;
   color:white;
   text-decoration:none;
   border-radius:5px;
+  font-weight:bold;
 }
 
 .productos{
-  padding:60px 20px;
+  padding:80px 20px;
   text-align:center;
 }
 
 .grid{
   display:flex;
   justify-content:center;
-  gap:30px;
+  gap:40px;
   flex-wrap:wrap;
 }
 
 .card{
   background:white;
-  width:300px;
+  width:320px;
   border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-  padding:15px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
 }
 
 .card img{
   width:100%;
-  border-radius:8px;
+}
+
+.card-content{
+  padding:20px;
 }
 
 .whatsapp{
@@ -82,24 +102,26 @@ header h1{
 }
 
 footer{
-  background:#3e2c1c;
+  background:#2c1f14;
   color:white;
   text-align:center;
-  padding:20px;
-  margin-top:40px;
+  padding:30px;
+  margin-top:60px;
 }
 </style>
-
 </head>
 <body>
 
 <header>
-  <h1>CPCARPINTERIA</h1>
+  <img src="logo1.jpeg" alt="Logo">
+  <nav>
+    <a href="#productos">Productos</a>
+  </nav>
 </header>
 
 <section class="hero">
   <h2>Muebles de madera maciza</h2>
-  <p>Fabricación propia • Calidad • Diseño</p>
+  <p>Fabricación propia • Calidad premium</p>
   <a class="btn" href="#productos">Ver productos</a>
 </section>
 
@@ -110,13 +132,15 @@ footer{
 
     <div class="card">
       <img src="https://via.placeholder.com/400x300" alt="Mesa">
-      <h3>Mesa Plegable 70x70</h3>
-      <p>Pino macizo reforzada</p>
-      <a class="whatsapp" 
-      href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70" 
-      target="_blank">
-      Consultar por WhatsApp
-      </a>
+      <div class="card-content">
+        <h3>Mesa Plegable 70x70</h3>
+        <p>Pino macizo reforzada</p>
+        <a class="whatsapp" 
+        href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70" 
+        target="_blank">
+        Consultar por WhatsApp
+        </a>
+      </div>
     </div>
 
   </div>
@@ -127,4 +151,4 @@ footer{
 </footer>
 
 </body>
-</html>
+</html
