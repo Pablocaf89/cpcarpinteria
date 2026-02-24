@@ -60,7 +60,7 @@ nav{
 }
 
 nav.active{
-  max-height:600px; /* suficiente para todos los links */
+  max-height:600px;
 }
 
 nav a{
@@ -73,11 +73,13 @@ nav a{
 
 /* Submenú Contacto */
 .submenu{
-  display:none;
-  flex-direction:column;
+  display: none;               /* oculto al cargar */
+  flex-direction: column;
   padding-left:10px;
   margin-top:5px;
   margin-bottom:5px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
 }
 
 .submenu a{
@@ -305,10 +307,14 @@ function toggleMenu(){
   toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
 }
 
-// Submenú contacto
+// Submenú contacto con animación
 function toggleSubmenu(){
   var submenu = document.getElementById("contacto-submenu");
-  submenu.style.display = (submenu.style.display === 'flex') ? 'none' : 'flex';
+  if(submenu.style.display === 'flex'){
+    submenu.style.display = 'none';
+  } else {
+    submenu.style.display = 'flex';
+  }
 }
 </script>
 
