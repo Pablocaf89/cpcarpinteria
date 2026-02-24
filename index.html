@@ -6,43 +6,15 @@
 <title>Cpcarpinteria</title>
 
 <style>
+
 body{
   margin:0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family:'Segoe UI', Arial, sans-serif;
   background:#f6f2ed;
   color:#333;
-  .menu-toggle{
-  display:block;
-  font-size:28px;
-  cursor:pointer;
 }
 
-@media(max-width:768px){
-
-  nav{
-    display:none;
-    flex-direction:column;
-    background:#eeeeee;
-    position:absolute;
-    top:70px;
-    right:20px;
-    border-radius:8px;
-    padding:20px;
-  }
-
-  nav a{
-    margin:10px 0;
-    text-decoration:none;
-    color:#2e2e2e;
-    front-weight:bold;
-  }
-
-  .menu-toggle{
-    display:block;
-  }
-
-}
-}
+/* HEADER */
 
 header{
   background:#eeeeee;
@@ -50,18 +22,42 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  position:relative;
 }
 
 header img{
   height:80px;
 }
 
-nav a{
-  color:#2e2e2e;
-  text-decoration:none;
-  margin-left:25px;
-  font-weight:500;
+/* BOTÓN HAMBURGUESA */
+
+.menu-toggle{
+  font-size:28px;
+  cursor:pointer;
 }
+
+/* MENÚ OCULTO */
+
+nav{
+  display:none;
+  flex-direction:column;
+  position:absolute;
+  top:70px;
+  right:40px;
+  background:#eeeeee;
+  padding:20px;
+  border-radius:8px;
+  width:200px;
+}
+
+nav a{
+  margin:10px 0;
+  text-decoration:none;
+  color:#2e2e2e;
+  font-weight:600;
+}
+
+/* HERO */
 
 .hero{
   background:#dddddd;
@@ -75,6 +71,8 @@ nav a{
   margin-bottom:10px;
 }
 
+/* BOTÓN PRINCIPAL */
+
 .btn{
   display:inline-block;
   margin-top:20px;
@@ -85,6 +83,8 @@ nav a{
   border-radius:6px;
   font-weight:bold;
 }
+
+/* PRODUCTOS */
 
 .productos{
   padding:80px 20px;
@@ -129,6 +129,8 @@ nav a{
   border-radius:5px;
 }
 
+/* FOOTER */
+
 footer{
   background:#2e2e2e;
   color:white;
@@ -136,8 +138,10 @@ footer{
   padding:30px;
   margin-top:60px;
 }
+
 </style>
 </head>
+
 <body>
 
 <header>
@@ -148,11 +152,11 @@ footer{
   </div>
 
   <nav id="menu">
-    <a href="#">Productos</a>
+    <a href="#productos">Productos</a>
     <a href="#">Quienes somos</a>
     <a href="#">Contacto</a>
   </nav>
-</header
+</header>
 
 <section class="hero">
   <h2>Muebles de madera maciza</h2>
@@ -184,7 +188,8 @@ footer{
 <footer>
   © 2026 Cpcarpinteria
 </footer>
-  <script>
+
+<script>
 function toggleMenu(){
   var menu = document.getElementById("menu");
   if(menu.style.display === "flex"){
