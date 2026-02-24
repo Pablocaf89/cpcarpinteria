@@ -6,8 +6,6 @@
 <title>CP Carpintería | Muebles de madera maciza</title>
 
 <style>
-
-/* VARIABLES DE COLOR */
 :root {
   --color-primario: #c69c6d;
   --color-hover: #b38655;
@@ -17,7 +15,6 @@
   --color-whatsapp-hover: #1ebe5d;
 }
 
-/* BODY */
 body{
   margin:0;
   font-family:'Segoe UI', Arial, sans-serif;
@@ -63,7 +60,7 @@ nav{
 }
 
 nav.active{
-  max-height:500px;
+  max-height:600px; /* suficiente para todos los links */
 }
 
 nav a{
@@ -71,6 +68,23 @@ nav a{
   text-decoration:none;
   color:#2e2e2e;
   font-weight:600;
+  cursor:pointer;
+}
+
+/* Submenú Contacto */
+.submenu{
+  display:none;
+  flex-direction:column;
+  padding-left:10px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.submenu a{
+  font-weight: normal;
+  color:#444;
+  margin:5px 0;
+  font-size:14px;
 }
 
 /* HERO */
@@ -201,7 +215,6 @@ footer a{
     width:90%;
   }
 }
-
 </style>
 </head>
 
@@ -217,13 +230,15 @@ footer a{
   <nav id="menu" aria-label="Menú principal">
     <a href="#productos">Productos</a>
     <a href="#quienes">Quiénes somos</a>
-    <strong>Contacto</strong>
-    <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
-    <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
-    <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">
-      🟢 WhatsApp: 11-6682-3619
-    </a>
-    <a href="#">Código Postal: 1661</a>
+    
+    <!-- Contacto con submenú -->
+    <a id="contacto-toggle" onclick="toggleSubmenu()">Contacto ▼</a>
+    <div id="contacto-submenu" class="submenu">
+      <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
+      <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
+      <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 WhatsApp: 11-6682-3619</a>
+      <a href="#">Código Postal: 1661</a>
+    </div>
   </nav>
 </header>
 
@@ -288,6 +303,12 @@ function toggleMenu(){
   menu.classList.toggle("active");
   var toggle = document.querySelector(".menu-toggle");
   toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
+}
+
+// Submenú contacto
+function toggleSubmenu(){
+  var submenu = document.getElementById("contacto-submenu");
+  submenu.style.display = (submenu.style.display === 'flex') ? 'none' : 'flex';
 }
 </script>
 
