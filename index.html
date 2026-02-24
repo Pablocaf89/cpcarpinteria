@@ -11,8 +11,6 @@
   --color-hover:#b38655;
   --color-fondo:#f6f2ed;
   --color-texto:#333;
-  --color-whatsapp:#25D366;
-  --color-whatsapp-hover:#1ebe5d;
 }
 
 body{
@@ -32,42 +30,30 @@ header{
   z-index:2000;
 }
 
-/* LOGO */
-.logo{ flex:0 0 auto; }
 .logo img{ height:70px; }
 
-/* CENTRO */
 .header-center{
   flex:1;
   display:flex;
   justify-content:center;
 }
 
-/* BUSCADOR */
 .search-container{
   width:100%;
   max-width:450px;
 }
+
 .search-container input{
   width:100%;
   padding:10px 18px;
   border-radius:30px;
   border:1px solid #ccc;
   outline:none;
-  font-size:14px;
-  transition:.3s;
-}
-.search-container input:focus{
-  border-color:var(--color-primario);
-  box-shadow:0 0 8px rgba(198,156,109,.3);
 }
 
-/* BOTÓN HAMBURGUESA */
 .menu-toggle{
-  flex:0 0 auto;
   font-size:28px;
   cursor:pointer;
-  user-select:none;
 }
 
 /* ================= MENÚ ================= */
@@ -79,60 +65,23 @@ nav{
   right:20px;
   background:#eeeeee;
   border-radius:8px;
-  width:240px;
+  width:220px;
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
-  z-index:2200;
-
   max-height:0;
-  padding:0;
   overflow:hidden;
-  transition:max-height .3s ease, padding .3s ease;
+  transition:max-height .3s ease;
 }
+
 nav.active{
-  max-height:800px;
+  max-height:500px;
   padding:20px;
 }
+
 nav a{
   margin:10px 0;
   text-decoration:none;
   color:#2e2e2e;
   font-weight:600;
-  cursor:pointer;
-}
-
-/* SUBMENÚ */
-.submenu{
-  display:flex;
-  flex-direction:column;
-  padding-left:10px;
-  margin-top:5px;
-  margin-bottom:5px;
-  overflow:hidden;
-
-  max-height:0;
-  opacity:0;
-  transition:max-height .3s ease, opacity .2s ease;
-}
-.submenu.active{
-  max-height:260px;
-  opacity:1;
-}
-.submenu a{
-  font-weight:normal;
-  color:#444;
-  margin:5px 0;
-  font-size:14px;
-}
-
-/* WhatsApp ícono (en el menú) */
-.whatsapp-link{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.whatsapp-icon{
-  width:18px;
-  height:18px;
 }
 
 /* ================= HERO ================= */
@@ -141,199 +90,105 @@ nav a{
   background-image:url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop");
   background-size:cover;
   background-position:center;
-  background-repeat:no-repeat;
   text-align:center;
   padding:150px 20px;
   color:white;
-  overflow:hidden;
 }
+
 .hero::before{
   content:"";
   position:absolute;
   inset:0;
   background:rgba(0,0,0,0.55);
 }
+
 .hero h2,
-.hero p,
-.hero .btn{
+.hero p{
   position:relative;
   z-index:2;
 }
+
 .hero h2{
   font-size:48px;
   margin-bottom:15px;
 }
-
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:14px 30px;
-  background:var(--color-primario);
-  color:white;
-  text-decoration:none;
-  border-radius:6px;
-  font-weight:bold;
-  transition:.3s;
-}
-.btn:hover{ background:var(--color-hover); }
 
 /* ================= AMBIENTES ================= */
 .ambientes{
   padding:90px 20px;
   text-align:center;
 }
+
 .ambientes h2{
-  margin:0 0 10px;
-  font-size:32px;
+  margin-bottom:40px;
 }
-.ambientes p{
-  margin:0 auto 40px;
-  max-width:850px;
-  color:#444;
-  line-height:1.8;
-  font-size:17px;
-}
+
 .ambientes-grid{
   display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
   max-width:1100px;
   margin:0 auto;
 }
+
 .ambiente-card{
   position:relative;
-  height:190px;
-  border-radius:14px;
+  height:200px;
+  border-radius:12px;
   overflow:hidden;
   text-decoration:none;
-  box-shadow:0 10px 24px rgba(0,0,0,0.12);
-  transform:translateY(0);
-  transition:transform .25s ease;
-  background:#ddd;
+  color:white;
 }
-.ambiente-card:hover{
-  transform:translateY(-5px);
-}
+
 .ambiente-card img{
   width:100%;
   height:100%;
   object-fit:cover;
-  display:block;
-  filter:saturate(1.05);
 }
+
 .ambiente-card::before{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.15));
-}
-.ambiente-card .label{
-  position:absolute;
-  left:16px;
-  right:16px;
-  bottom:14px;
-  color:#fff;
-  z-index:2;
-  text-align:left;
-}
-.ambiente-card .label strong{
-  display:block;
-  font-size:18px;
-  letter-spacing:.2px;
-  margin-bottom:4px;
-}
-.ambiente-card .label span{
-  font-size:13px;
-  opacity:.95;
+  background:rgba(0,0,0,0.4);
 }
 
-/* ================= QUIÉNES SOMOS (CON IMAGEN) ================= */
+.ambiente-card span{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  font-size:20px;
+  font-weight:bold;
+  z-index:2;
+}
+
+/* ================= QUIÉNES ================= */
 .quienes{
   background:white;
   padding:100px 40px;
 }
-.quienes h2{
-  text-align:center;
-  margin-bottom:60px;
-  font-size:32px;
-}
+
 .quienes-wrapper{
   display:flex;
-  align-items:center;
-  gap:60px;
+  gap:50px;
   max-width:1100px;
   margin:0 auto;
+  align-items:center;
 }
+
 .quienes-texto{
   flex:1;
-  line-height:1.9;
-  font-size:17px;
-  color:#444;
+  line-height:1.8;
 }
-.quienes-texto p{ margin-bottom:20px; }
-.quienes-imagen{ flex:1; }
+
+.quienes-imagen{
+  flex:1;
+}
+
 .quienes-imagen img{
   width:100%;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
-}
-
-/* ================= PRODUCTOS ================= */
-.productos{
-  padding:80px 20px;
-  text-align:center;
-}
-.productos h2{
-  margin-bottom:10px;
-}
-.productos .sub{
-  margin:0 auto 35px;
-  max-width:850px;
-  color:#444;
-  line-height:1.8;
-  font-size:17px;
-}
-
-.categoria{
-  max-width:1100px;
-  margin:45px auto 0;
-  text-align:left;
-}
-.categoria h3{
-  margin:0 0 14px;
-  font-size:22px;
-  color:#2e2e2e;
-}
-.grid{
-  display:flex;
-  justify-content:flex-start;
-  gap:20px;
-  flex-wrap:wrap;
-}
-.card{
-  background:white;
-  width:320px;
   border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,0.1);
-  transition:.3s;
 }
-.card:hover{ transform:translateY(-5px); }
-.card img{ width:100%; }
-.card-content{ padding:20px; }
-
-.whatsapp{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 15px;
-  background:var(--color-whatsapp);
-  color:white;
-  text-decoration:none;
-  border-radius:5px;
-  font-weight:bold;
-  transition:.3s;
-}
-.whatsapp:hover{ background:var(--color-whatsapp-hover); }
 
 /* ================= FOOTER ================= */
 footer{
@@ -343,26 +198,17 @@ footer{
   padding:30px;
   margin-top:60px;
 }
-footer a{
-  color:white;
-  text-decoration:none;
-}
 
-/* ================= RESPONSIVE ================= */
+/* Responsive */
 @media (max-width:900px){
-  .quienes-wrapper{ flex-direction:column; }
-  .ambientes-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .quienes-wrapper{
+    flex-direction:column;
+  }
 }
 
 @media (max-width:600px){
-  header{ padding:15px 20px; }
-  .header-center{ display:none; } /* ocultar buscador en móvil */
-  .hero{ padding:110px 15px; }
+  .header-center{ display:none; }
   .hero h2{ font-size:34px; }
-  .card{ width:90%; }
-  .quienes{ padding:70px 20px; }
-  .ambientes-grid{ grid-template-columns:1fr; }
-  .ambiente-card{ height:175px; }
 }
 </style>
 </head>
@@ -380,299 +226,68 @@ footer a{
     </div>
   </div>
 
-  <div class="menu-toggle"
-       aria-label="Abrir menú"
-       role="button"
-       tabindex="0"
-       aria-expanded="false">☰</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-  <nav id="menu" aria-label="Menú principal">
+  <nav id="menu">
     <a href="#ambientes">Ambientes</a>
-    <a href="#productos">Productos</a>
     <a href="#quienes">Quiénes somos</a>
-
-    <a id="contacto-toggle" href="javascript:void(0)">Contacto ▼</a>
-    <div id="contacto-submenu" class="submenu">
-      <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
-      <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
-
-      <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-             alt="WhatsApp"
-             class="whatsapp-icon">
-        WhatsApp: 11-6682-3619
-      </a>
-
-      <a href="javascript:void(0)">Código Postal: 1661</a>
-    </div>
+    <a href="tel:+5491166823619">Teléfono</a>
+    <a href="mailto:Cpcarpinteria@gmail.com">Email</a>
   </nav>
 </header>
 
 <section class="hero">
   <h2>Muebles en madera y melamina</h2>
   <p>Modelos estándar • Fabricación propia • Terminaciones cuidadas</p>
-  <a class="btn" href="#ambientes">Ver ambientes</a>
 </section>
 
-<!-- ================= AMBIENTES ================= -->
 <section id="ambientes" class="ambientes">
-  <h2>Nuestros ambientes</h2>
-  <p>
-    Organizamos nuestros muebles por ambientes para que encuentres más rápido lo que necesitás.
-    Elegí una categoría y mirá los productos disponibles en medidas estándar.
-  </p>
+  <h2>Nuestros Ambientes</h2>
 
   <div class="ambientes-grid">
-    <a class="ambiente-card" href="#cocina">
-      <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=1600&auto=format&fit=crop" alt="Muebles de cocina">
-      <div class="label">
-        <strong>Cocina</strong>
-        <span>Bajo mesadas • Alacenas • Despenseros</span>
-      </div>
+    <a href="cocina.html" class="ambiente-card">
+      <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?q=80&w=1600&auto=format&fit=crop">
+      <span>Cocina</span>
     </a>
 
-    <a class="ambiente-card" href="#dormitorio">
-      <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=1600&auto=format&fit=crop" alt="Muebles de dormitorio">
-      <div class="label">
-        <strong>Dormitorio</strong>
-        <span>Roperos • Mesas de luz • Cómodas</span>
-      </div>
+    <a href="dormitorio.html" class="ambiente-card">
+      <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=1600&auto=format&fit=crop">
+      <span>Dormitorio</span>
     </a>
 
-    <a class="ambiente-card" href="#living">
-      <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop" alt="Muebles de living">
-      <div class="label">
-        <strong>Living</strong>
-        <span>Racks • Modulares • Bibliotecas</span>
-      </div>
-    </a>
-
-    <a class="ambiente-card" href="#oficina">
-      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop" alt="Muebles de oficina">
-      <div class="label">
-        <strong>Oficina</strong>
-        <span>Escritorios • Estantes • Biblioratos</span>
-      </div>
-    </a>
-
-    <a class="ambiente-card" href="#banio">
-      <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1600&auto=format&fit=crop" alt="Muebles de baño">
-      <div class="label">
-        <strong>Baño</strong>
-        <span>Bachas • Alacenas • Organizadores</span>
-      </div>
-    </a>
-
-    <a class="ambiente-card" href="#otros">
-      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1600&auto=format&fit=crop" alt="Otros muebles">
-      <div class="label">
-        <strong>Otros</strong>
-        <span>Organización • Guardado • Complementos</span>
-      </div>
+    <a href="living.html" class="ambiente-card">
+      <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop">
+      <span>Living</span>
     </a>
   </div>
 </section>
 
-<!-- ================= QUIÉNES SOMOS ================= -->
 <section id="quienes" class="quienes">
-  <h2>Quiénes Somos</h2>
-
   <div class="quienes-wrapper">
     <div class="quienes-texto">
+      <h2>Quiénes Somos</h2>
       <p>
-        En <strong>CP Carpintería</strong> trabajamos la madera con dedicación, compromiso y respeto por el oficio.
-        Somos un emprendimiento enfocado en fabricar muebles en madera y melamina con diseños funcionales,
-        estructuras firmes y terminaciones cuidadas.
-      </p>
-
-      <p>
-        Nuestro proceso combina técnicas artesanales con herramientas modernas, cuidando cada etapa:
-        selección de materiales, armado, refuerzos y acabado final. Buscamos que cada mueble sea práctico,
-        resistente y listo para acompañar el uso diario.
-      </p>
-
-      <p>
-        Nuestra propuesta es simple: ofrecer una línea de muebles en <strong>medidas estándar</strong>,
-        con calidad consistente y fabricación propia, para que puedas elegir fácil y comprar con confianza.
+        En <strong>CP Carpintería</strong> fabricamos muebles en madera y melamina
+        con diseños funcionales, estructuras firmes y terminaciones cuidadas.
+        Trabajamos con medidas estándar, ofreciendo calidad constante
+        y fabricación propia.
       </p>
     </div>
 
     <div class="quienes-imagen">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
-           alt="Taller de carpintería trabajando la madera">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop">
     </div>
   </div>
-</section>
-
-<!-- ================= PRODUCTOS ================= -->
-<section id="productos" class="productos">
-  <h2>Productos</h2>
-  <p class="sub">
-    Acá podés ir cargando tus productos por categoría. Por ahora dejé ejemplos con placeholders para que lo completes.
-  </p>
-
-  <!-- COCINA -->
-  <div id="cocina" class="categoria">
-    <h3>Cocina</h3>
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Bajo mesada estándar">
-        <div class="card-content">
-          <h3>Bajo mesada (modelo estándar)</h3>
-          <p>Madera / Melamina • Medidas estándar</p>
-          <a class="whatsapp"
-             href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20Bajo%20mesada%20modelo%20est%C3%A1ndar"
-             target="_blank" rel="noopener noreferrer">
-            Consultar por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DORMITORIO -->
-  <div id="dormitorio" class="categoria">
-    <h3>Dormitorio</h3>
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Mesa de luz estándar">
-        <div class="card-content">
-          <h3>Mesa de luz (modelo estándar)</h3>
-          <p>Madera / Melamina • Medidas estándar</p>
-          <a class="whatsapp"
-             href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20Mesa%20de%20luz%20modelo%20est%C3%A1ndar"
-             target="_blank" rel="noopener noreferrer">
-            Consultar por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIVING -->
-  <div id="living" class="categoria">
-    <h3>Living</h3>
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Rack TV estándar">
-        <div class="card-content">
-          <h3>Rack TV (modelo estándar)</h3>
-          <p>Madera / Melamina • Medidas estándar</p>
-          <a class="whatsapp"
-             href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20Rack%20TV%20modelo%20est%C3%A1ndar"
-             target="_blank" rel="noopener noreferrer">
-            Consultar por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- OFICINA -->
-  <div id="oficina" class="categoria">
-    <h3>Oficina</h3>
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Escritorio estándar">
-        <div class="card-content">
-          <h3>Escritorio (modelo estándar)</h3>
-          <p>Madera / Melamina • Medidas estándar</p>
-          <a class="whatsapp"
-             href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20Escritorio%20modelo%20est%C3%A1ndar"
-             target="_blank" rel="noopener noreferrer">
-            Consultar por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- BAÑO -->
-  <div id="banio" class="categoria">
-    <h3>Baño</h3>
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Vanitory estándar">
-        <div class="card-content">
-          <h3>Vanitory (modelo estándar)</h3>
-          <p>Madera / Melamina • Medidas estándar</p>
-          <a class="whatsapp"
-             href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20Vanitory%20modelo%20est%C3%A1ndar"
-             target="_blank" rel="noopener noreferrer">
-            Consultar por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- OTROS -->
-  <div id="otros" class="categoria">
-    <h3>Otros</h3>
-    <div class="grid">
-      <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Estante estándar">
-        <div class="card-content">
-          <h3>Estante (modelo estándar)</h3>
-          <p>Madera / Melamina • Medidas estándar</p>
-          <a class="whatsapp"
-             href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20Estante%20modelo%20est%C3%A1ndar"
-             target="_blank" rel="noopener noreferrer">
-            Consultar por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </section>
 
 <footer>
   <p>© 2026 CP Carpintería</p>
-  <p>Teléfono: <a href="tel:+5491166823619">11-6682-3619</a></p>
-  <p>Email: <a href="mailto:Cpcarpinteria@gmail.com">Cpcarpinteria@gmail.com</a></p>
-  <p>WhatsApp: <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">11-6682-3619</a></p>
-  <p>Código Postal: 1661</p>
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  const menu = document.getElementById("menu");
-  const toggle = document.querySelector(".menu-toggle");
-  const submenu = document.getElementById("contacto-submenu");
-  const contactoToggle = document.getElementById("contacto-toggle");
-
-  function toggleMenu(){
-    menu.classList.toggle("active");
-    toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
-  }
-
-  toggle.addEventListener("click", function(e){
-    e.stopPropagation();
-    toggleMenu();
-  });
-
-  toggle.addEventListener("keydown", function(e){
-    if(e.key === "Enter" || e.key === " "){
-      e.preventDefault();
-      toggleMenu();
-    }
-  });
-
-  contactoToggle.addEventListener("click", function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    submenu.classList.toggle("active");
-  });
-
-  document.addEventListener("click", function(e){
-    if(menu.classList.contains("active") && !menu.contains(e.target) && !toggle.contains(e.target)){
-      menu.classList.remove("active");
-      toggle.setAttribute("aria-expanded","false");
-      submenu.classList.remove("active");
-    }
-  });
-});
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
 </script>
 
 </body>
