@@ -7,15 +7,25 @@
 
 <style>
 
+/* VARIABLES DE COLOR */
+:root {
+  --color-primario: #c69c6d;
+  --color-hover: #b38655;
+  --color-fondo: #f6f2ed;
+  --color-texto: #333;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1ebe5d;
+}
+
+/* BODY */
 body{
   margin:0;
   font-family:'Segoe UI', Arial, sans-serif;
-  background:#f6f2ed;
-  color:#333;
+  background: var(--color-fondo);
+  color: var(--color-texto);
 }
 
 /* HEADER */
-
 header{
   background:#eeeeee;
   padding:15px 40px;
@@ -30,29 +40,30 @@ header img{
 }
 
 /* BOTÓN HAMBURGUESA */
-
 .menu-toggle{
   font-size:28px;
   cursor:pointer;
 }
 
 /* MENÚ DESPLEGABLE */
-
 nav{
-  display:none;
+  display:flex;
   flex-direction:column;
   position:absolute;
   top:100%;
-  right:40px;
+  right:20px;
   background:#eeeeee;
   padding:20px;
   border-radius:8px;
-  width:200px;
+  width:220px;
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.3s ease;
 }
 
 nav.active{
-  display:flex;
+  max-height:500px;
 }
 
 nav a{
@@ -63,7 +74,6 @@ nav a{
 }
 
 /* HERO */
-
 .hero{
   background:#dddddd;
   text-align:center;
@@ -77,12 +87,11 @@ nav a{
 }
 
 /* BOTÓN PRINCIPAL */
-
 .btn{
   display:inline-block;
   margin-top:20px;
   padding:14px 30px;
-  background:#c69c6d;
+  background: var(--color-primario);
   color:white;
   text-decoration:none;
   border-radius:6px;
@@ -91,11 +100,10 @@ nav a{
 }
 
 .btn:hover{
-  background:#b38655;
+  background: var(--color-hover);
 }
 
 /* SECCIÓN QUIÉNES SOMOS */
-
 .quienes{
   background:white;
   padding:80px 20px;
@@ -115,7 +123,6 @@ nav a{
 }
 
 /* PRODUCTOS */
-
 .productos{
   padding:80px 20px;
   text-align:center;
@@ -153,7 +160,7 @@ nav a{
   display:inline-block;
   margin-top:15px;
   padding:10px 15px;
-  background:#25D366;
+  background: var(--color-whatsapp);
   color:white;
   text-decoration:none;
   border-radius:5px;
@@ -162,17 +169,37 @@ nav a{
 }
 
 .whatsapp:hover{
-  background:#1ebe5d;
+  background: var(--color-whatsapp-hover);
 }
 
 /* FOOTER */
-
 footer{
   background:#2e2e2e;
   color:white;
   text-align:center;
   padding:30px;
   margin-top:60px;
+}
+
+footer a{
+  color:white;
+  text-decoration:none;
+}
+
+/* MEDIA QUERIES */
+@media (max-width:600px){
+  .hero{
+    padding:80px 10px;
+  }
+  .quienes{
+    padding:50px 10px;
+  }
+  .grid{
+    gap:20px;
+  }
+  .card{
+    width:90%;
+  }
 }
 
 </style>
@@ -183,14 +210,20 @@ footer{
 <header>
   <img src="logo.png" alt="Logo CP Carpintería">
 
-  <div class="menu-toggle" onclick="toggleMenu()">
+  <div class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú" role="button" aria-expanded="false">
     ☰
   </div>
 
-  <nav id="menu">
+  <nav id="menu" aria-label="Menú principal">
     <a href="#productos">Productos</a>
     <a href="#quienes">Quiénes somos</a>
-    <a href="#">Contacto</a>
+    <strong>Contacto</strong>
+    <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
+    <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
+    <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">
+      🟢 WhatsApp: 11-6682-3619
+    </a>
+    <a href="#">Código Postal: 1661</a>
   </nav>
 </header>
 
@@ -231,9 +264,9 @@ footer{
         <h3>Mesa Plegable 70x70</h3>
         <p>Pino macizo reforzada</p>
         <a class="whatsapp" 
-        href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70" 
-        target="_blank">
-        Consultar por WhatsApp
+           href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70" 
+           target="_blank" rel="noopener noreferrer">
+           Consultar por WhatsApp
         </a>
       </div>
     </div>
@@ -242,13 +275,19 @@ footer{
 </section>
 
 <footer>
-  © 2026 CP Carpintería
+  <p>© 2026 CP Carpintería</p>
+  <p>Teléfono: <a href="tel:+5491166823619">11-6682-3619</a></p>
+  <p>Email: <a href="mailto:Cpcarpinteria@gmail.com">Cpcarpinteria@gmail.com</a></p>
+  <p>WhatsApp: <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 11-6682-3619</a></p>
+  <p>Código Postal: 1661</p>
 </footer>
 
 <script>
 function toggleMenu(){
   var menu = document.getElementById("menu");
   menu.classList.toggle("active");
+  var toggle = document.querySelector(".menu-toggle");
+  toggle.setAttribute("aria-expanded", menu.classList.contains("active"));
 }
 </script>
 
