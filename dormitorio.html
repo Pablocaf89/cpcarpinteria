@@ -173,32 +173,67 @@ h1{
   align-items:center;
   justify-content:center;
   padding:18px;
+
+  /* ✅ animación suave */
+  opacity:0;
+  transition:opacity .18s ease;
 }
 
-.modal.open{ display:flex; }
+.modal.open{
+  display:flex;
+  opacity:1;
+}
 
-/* ✅ Achicado “un poco” + entra siempre */
+/* ✅ Achicado un poco + scroll interno real */
 .modal-box{
-  width:min(700px, 100%);     /* antes 760px */
-  max-height:90vh;            /* limita altura */
-  overflow:auto;              /* scroll interno si hace falta */
+  width:min(700px, 100%);
+  max-height:90vh;     /* no supera pantalla */
+  overflow-y:auto;     /* ✅ scroll vertical */
+  overflow-x:hidden;   /* sin scroll horizontal */
   background:#fff;
   border-radius:14px;
-  overflow:hidden;
   box-shadow:0 20px 55px rgba(0,0,0,.25);
   position:relative;
+
+  /* ✅ animación suave */
+  transform:translateY(10px);
+  transition:transform .18s ease;
+}
+
+.modal.open .modal-box{
+  transform:translateY(0);
+}
+
+/* ✅ Scroll más prolijo (Chrome/Edge) */
+.modal-box::-webkit-scrollbar{
+  width:10px;
+}
+.modal-box::-webkit-scrollbar-track{
+  background:#f2f2f2;
+}
+.modal-box::-webkit-scrollbar-thumb{
+  background:#cfcfcf;
+  border-radius:20px;
+}
+.modal-box::-webkit-scrollbar-thumb:hover{
+  background:#bdbdbd;
 }
 
 .modal-close{
-  position:absolute;
-  top:10px;
-  right:12px;
+  position:sticky;  /* se queda visible al scrollear */
+  top:0;
+  margin-left:auto;
+  display:block;
+  width:42px;
+  height:42px;
   border:none;
-  background:transparent;
+  background:rgba(255,255,255,.95);
   font-size:26px;
   cursor:pointer;
   line-height:1;
-  z-index:3;
+  z-index:5;
+  border-radius:0 0 0 14px;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
 }
 
 /* ===== CARRUSEL EN MODAL (FOTOS COMPLETAS) ===== */
@@ -213,7 +248,7 @@ h1{
   transition:transform .3s ease;
 }
 
-/* ✅ Achicado “un poco” (antes 520px) */
+/* ✅ un poco más chico */
 .modal-slide{
   min-width:100%;
   height:420px;
@@ -374,7 +409,7 @@ h1{
   </div>
 </div>
 
-<!-- ===== MODAL DETALLES (CON FOTOS COMPLETAS) ===== -->
+<!-- ===== MODAL DETALLES (CON FOTOS COMPLETAS + SCROLL INTERNO) ===== -->
 <div class="modal" id="modal" aria-hidden="true">
   <div class="modal-box" role="dialog" aria-modal="true" aria-label="Detalles del producto">
     <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
@@ -484,11 +519,16 @@ function openModal(){
   /* sincroniza el carrusel del modal con la foto actual de la ficha */
   modalIndex = index;
   updateModalCarousel();
+
+  /* evita que el fondo haga scroll */
+  document.body.style.overflow = "hidden";
 }
 
 function close(){
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
+
+  document.body.style.overflow = "";
 }
 
 card.addEventListener("click", openModal);
