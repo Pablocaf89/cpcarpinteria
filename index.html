@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cpcarpinteria</title>
+<title>CP Carpintería | Muebles de madera maciza</title>
 
 <style>
 
@@ -12,26 +12,6 @@ body{
   font-family:'Segoe UI', Arial, sans-serif;
   background:#f6f2ed;
   color:#333;
-}
-
-/* SECCIÓN QUIÉNES SOMOS */
-
-.quienes{
-  background:white;
-  padding:80px 20px;
-  text-align:center;
-}
-
-.quienes h2{
-  margin-bottom:30px;
-}
-
-.quienes-contenido{
-  max-width:800px;
-  margin:0 auto;
-  line-height:1.8;
-  font-size:18px;
-  color:#444;
 }
 
 /* HEADER */
@@ -62,12 +42,17 @@ nav{
   display:none;
   flex-direction:column;
   position:absolute;
-  top:70px;
+  top:100%;
   right:40px;
   background:#eeeeee;
   padding:20px;
   border-radius:8px;
   width:200px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+nav.active{
+  display:flex;
 }
 
 nav a{
@@ -102,6 +87,31 @@ nav a{
   text-decoration:none;
   border-radius:6px;
   font-weight:bold;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#b38655;
+}
+
+/* SECCIÓN QUIÉNES SOMOS */
+
+.quienes{
+  background:white;
+  padding:80px 20px;
+  text-align:center;
+}
+
+.quienes h2{
+  margin-bottom:30px;
+}
+
+.quienes-contenido{
+  max-width:800px;
+  margin:0 auto;
+  line-height:1.8;
+  font-size:18px;
+  color:#444;
 }
 
 /* PRODUCTOS */
@@ -147,6 +157,12 @@ nav a{
   color:white;
   text-decoration:none;
   border-radius:5px;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.whatsapp:hover{
+  background:#1ebe5d;
 }
 
 /* FOOTER */
@@ -165,7 +181,7 @@ footer{
 <body>
 
 <header>
-  <img src="logo.png" alt="Logo Cpcarpinteria">
+  <img src="logo.png" alt="Logo CP Carpintería">
 
   <div class="menu-toggle" onclick="toggleMenu()">
     ☰
@@ -188,7 +204,7 @@ footer{
   <h2>Quiénes Somos</h2>
   <div class="quienes-contenido">
     <p>
-      En <strong>Cpcarpinteria</strong> trabajamos la madera con pasión y compromiso.
+      En <strong>CP Carpintería</strong> trabajamos la madera con pasión y compromiso.
       Somos un emprendimiento dedicado a la fabricación de muebles en pino macizo,
       combinando diseño funcional, resistencia y terminaciones cuidadas.
     </p>
@@ -210,7 +226,7 @@ footer{
   <div class="grid">
 
     <div class="card">
-      <img src="https://via.placeholder.com/400x300" alt="Mesa">
+      <img src="https://via.placeholder.com/400x300" alt="Mesa plegable 70x70">
       <div class="card-content">
         <h3>Mesa Plegable 70x70</h3>
         <p>Pino macizo reforzada</p>
@@ -226,17 +242,13 @@ footer{
 </section>
 
 <footer>
-  © 2026 Cpcarpinteria
+  © 2026 CP Carpintería
 </footer>
 
 <script>
 function toggleMenu(){
   var menu = document.getElementById("menu");
-  if(menu.style.display === "flex"){
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
+  menu.classList.toggle("active");
 }
 </script>
 
