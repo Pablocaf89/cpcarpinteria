@@ -29,14 +29,13 @@ header{
   display:flex;
   align-items:center;
   position:relative;
-  z-index:2000;
+  z-index:2000; /* por encima del hero */
 }
 
 /* LOGO */
 .logo{
   flex:0 0 auto;
 }
-
 .logo img{
   height:70px;
 }
@@ -53,7 +52,6 @@ header{
   width:100%;
   max-width:450px;
 }
-
 .search-container input{
   width:100%;
   padding:10px 18px;
@@ -63,7 +61,6 @@ header{
   font-size:14px;
   transition:.3s;
 }
-
 .search-container input:focus{
   border-color:var(--color-primario);
   box-shadow:0 0 8px rgba(198,156,109,.3);
@@ -95,12 +92,10 @@ nav{
   overflow:hidden;
   transition:max-height .3s ease, padding .3s ease;
 }
-
 nav.active{
   max-height:600px;
   padding:20px;
 }
-
 nav a{
   margin:10px 0;
   text-decoration:none;
@@ -122,12 +117,10 @@ nav a{
   opacity:0;
   transition:max-height .3s ease, opacity .2s ease;
 }
-
 .submenu.active{
   max-height:240px;
   opacity:1;
 }
-
 .submenu a{
   font-weight:normal;
   color:#444;
@@ -147,27 +140,24 @@ nav a{
   color:white;
   overflow:hidden;
 }
-
 .hero::before{
   content:"";
   position:absolute;
   inset:0;
   background:rgba(0,0,0,0.55);
 }
-
 .hero h2,
 .hero p,
 .hero .btn{
   position:relative;
   z-index:2;
 }
-
 .hero h2{
   font-size:48px;
   margin-bottom:15px;
 }
 
-/* BOTÓN */
+/* BOTÓN PRINCIPAL */
 .btn{
   display:inline-block;
   margin-top:20px;
@@ -179,21 +169,43 @@ nav a{
   font-weight:bold;
   transition:.3s;
 }
-.btn:hover{ background:var(--color-hover); }
-
-/* ================= QUIÉNES ================= */
-.quienes{
-  background:white;
-  padding:80px 20px;
-  text-align:center;
+.btn:hover{
+  background:var(--color-hover);
 }
 
-.quienes-contenido{
-  max-width:800px;
+/* ================= QUIÉNES SOMOS (CON IMAGEN) ================= */
+.quienes{
+  background:white;
+  padding:100px 40px;
+}
+.quienes h2{
+  text-align:center;
+  margin-bottom:60px;
+  font-size:32px;
+}
+.quienes-wrapper{
+  display:flex;
+  align-items:center;
+  gap:60px;
+  max-width:1100px;
   margin:0 auto;
-  line-height:1.8;
-  font-size:18px;
+}
+.quienes-texto{
+  flex:1;
+  line-height:1.9;
+  font-size:17px;
   color:#444;
+}
+.quienes-texto p{
+  margin-bottom:20px;
+}
+.quienes-imagen{
+  flex:1;
+}
+.quienes-imagen img{
+  width:100%;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
 /* ================= PRODUCTOS ================= */
@@ -201,14 +213,12 @@ nav a{
   padding:80px 20px;
   text-align:center;
 }
-
 .grid{
   display:flex;
   justify-content:center;
   gap:40px;
   flex-wrap:wrap;
 }
-
 .card{
   background:white;
   width:320px;
@@ -217,11 +227,15 @@ nav a{
   box-shadow:0 8px 20px rgba(0,0,0,0.1);
   transition:.3s;
 }
-.card:hover{ transform:translateY(-5px); }
-
-.card img{ width:100%; }
-.card-content{ padding:20px; }
-
+.card:hover{
+  transform:translateY(-5px);
+}
+.card img{
+  width:100%;
+}
+.card-content{
+  padding:20px;
+}
 .whatsapp{
   display:inline-block;
   margin-top:15px;
@@ -233,7 +247,9 @@ nav a{
   font-weight:bold;
   transition:.3s;
 }
-.whatsapp:hover{ background:var(--color-whatsapp-hover); }
+.whatsapp:hover{
+  background:var(--color-whatsapp-hover);
+}
 
 /* ================= FOOTER ================= */
 footer{
@@ -243,14 +259,40 @@ footer{
   padding:30px;
   margin-top:60px;
 }
+footer a{
+  color:white;
+  text-decoration:none;
+}
 
 /* ================= RESPONSIVE ================= */
+@media (max-width:900px){
+  .quienes-wrapper{
+    flex-direction:column;
+  }
+}
+
 @media (max-width:600px){
-  header{ padding:15px 20px; }
-  .header-center{ display:none; }
-  .hero{ padding:100px 15px; }
-  .hero h2{ font-size:34px; }
-  .card{ width:90%; }
+  header{
+    padding:15px 20px;
+  }
+  .header-center{
+    display:none; /* ocultar buscador en móvil */
+  }
+  .hero{
+    padding:100px 15px;
+  }
+  .hero h2{
+    font-size:34px;
+  }
+  .grid{
+    gap:20px;
+  }
+  .card{
+    width:90%;
+  }
+  .quienes{
+    padding:70px 20px;
+  }
 }
 </style>
 </head>
@@ -258,7 +300,6 @@ footer{
 <body>
 
 <header>
-
   <div class="logo">
     <img src="logo.png" alt="Logo CP Carpintería">
   </div>
@@ -275,20 +316,19 @@ footer{
        tabindex="0"
        aria-expanded="false">☰</div>
 
-  <nav id="menu">
+  <nav id="menu" aria-label="Menú principal">
     <a href="#productos">Productos</a>
     <a href="#quienes">Quiénes somos</a>
 
     <a id="contacto-toggle" href="javascript:void(0)">Contacto ▼</a>
 
     <div id="contacto-submenu" class="submenu">
-      <a href="tel:+5491166823619">Teléfono</a>
-      <a href="mailto:Cpcarpinteria@gmail.com">Email</a>
-      <a href="https://wa.me/5491166823619" target="_blank">🟢 WhatsApp</a>
+      <a href="tel:+5491166823619">Teléfono: 11-6682-3619</a>
+      <a href="mailto:Cpcarpinteria@gmail.com">Email: Cpcarpinteria@gmail.com</a>
+      <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 WhatsApp: 11-6682-3619</a>
       <a href="javascript:void(0)">Código Postal: 1661</a>
     </div>
   </nav>
-
 </header>
 
 <section class="hero">
@@ -299,16 +339,43 @@ footer{
 
 <section id="quienes" class="quienes">
   <h2>Quiénes Somos</h2>
-  <div class="quienes-contenido">
-    <p>
-      En <strong>CP Carpintería</strong> trabajamos la madera con pasión y compromiso,
-      creando muebles sólidos, prácticos y hechos para durar.
-    </p>
+
+  <div class="quienes-wrapper">
+
+    <div class="quienes-texto">
+      <p>
+        En <strong>CP Carpintería</strong> trabajamos la madera con dedicación,
+        compromiso y respeto por el oficio. Somos un emprendimiento especializado
+        en la fabricación de muebles en pino macizo, donde cada pieza es creada
+        con atención al detalle y enfoque en la durabilidad.
+      </p>
+
+      <p>
+        Nuestro proceso combina técnicas artesanales con herramientas modernas,
+        asegurando estructuras firmes, terminaciones cuidadas y diseños funcionales.
+        Desde la selección de la madera hasta el acabado final,
+        cada etapa es realizada con precisión.
+      </p>
+
+      <p>
+        Creemos que un buen mueble no solo cumple una función,
+        sino que aporta calidez, personalidad y confianza a cada hogar.
+        Por eso, nuestro objetivo es simple: fabricar muebles sólidos,
+        prácticos y hechos para acompañar muchos años.
+      </p>
+    </div>
+
+    <div class="quienes-imagen">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
+           alt="Taller de carpintería trabajando la madera">
+    </div>
+
   </div>
 </section>
 
 <section id="productos" class="productos">
   <h2>Nuestros Productos</h2>
+
   <div class="grid">
     <div class="card">
       <img src="https://via.placeholder.com/400x300" alt="Mesa plegable 70x70">
@@ -317,7 +384,7 @@ footer{
         <p>Pino macizo reforzada</p>
         <a class="whatsapp"
            href="https://wa.me/5491166823619?text=Hola,%20quiero%20consultar%20por%20la%20Mesa%20Plegable%2070x70"
-           target="_blank">
+           target="_blank" rel="noopener noreferrer">
           Consultar por WhatsApp
         </a>
       </div>
@@ -327,11 +394,14 @@ footer{
 
 <footer>
   <p>© 2026 CP Carpintería</p>
+  <p>Teléfono: <a href="tel:+5491166823619">11-6682-3619</a></p>
+  <p>Email: <a href="mailto:Cpcarpinteria@gmail.com">Cpcarpinteria@gmail.com</a></p>
+  <p>WhatsApp: <a href="https://wa.me/5491166823619" target="_blank" rel="noopener noreferrer">🟢 11-6682-3619</a></p>
+  <p>Código Postal: 1661</p>
 </footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
-
   const menu = document.getElementById("menu");
   const toggle = document.querySelector(".menu-toggle");
   const submenu = document.getElementById("contacto-submenu");
@@ -347,12 +417,21 @@ document.addEventListener("DOMContentLoaded", function(){
     toggleMenu();
   });
 
+  // Accesibilidad: Enter o espacio
+  toggle.addEventListener("keydown", function(e){
+    if(e.key === "Enter" || e.key === " "){
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
   contactoToggle.addEventListener("click", function(e){
     e.preventDefault();
     e.stopPropagation();
     submenu.classList.toggle("active");
   });
 
+  // Cerrar menú al hacer click fuera
   document.addEventListener("click", function(e){
     if(menu.classList.contains("active") &&
        !menu.contains(e.target) &&
@@ -362,7 +441,6 @@ document.addEventListener("DOMContentLoaded", function(){
       submenu.classList.remove("active");
     }
   });
-
 });
 </script>
 
