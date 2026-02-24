@@ -11,6 +11,34 @@ body{
   font-family: 'Segoe UI', Arial, sans-serif;
   background:#f6f2ed;
   color:#333;
+  .menu-toggle{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+}
+
+@media(max-width:768px){
+
+  nav{
+    display:none;
+    flex-direction:column;
+    background:#eeeeee;
+    position:absolute;
+    top:70px;
+    right:0;
+    width:200px;
+    padding:20px;
+  }
+
+  nav a{
+    margin:10px 0;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+}
 }
 
 header{
